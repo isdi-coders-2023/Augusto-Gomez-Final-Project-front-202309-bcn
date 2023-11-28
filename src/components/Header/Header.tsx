@@ -7,6 +7,8 @@ const Header = (): React.ReactElement => (
       className="main-header__logo"
       src="./images/flixpicks_logo.png"
       alt="flixpicks logo on black letters"
+      width="197"
+      height="100"
     />
     <Navigation />
   </HeaderStyled>
