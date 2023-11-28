@@ -7,7 +7,7 @@ const HeaderStyled = styled.header`
 
   .main-header {
     &__logo {
-      width: 175px;
+      max-width: 250px;
     }
   }
 `;
