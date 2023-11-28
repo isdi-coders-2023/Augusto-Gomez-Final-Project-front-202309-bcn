@@ -7,6 +7,7 @@ const ListPageStyled = styled.section`
       flex-direction: column;
       align-items: center;
       gap: 15px;
+      max-width: 400px;
     }
 
     &__title {
@@ -14,6 +15,7 @@ const ListPageStyled = styled.section`
       max-width: 400px;
       font-size: 50px;
       font-weight: 500;
+      color: ${({ theme }) => theme.colors.dark};
     }
 
     &__divider {

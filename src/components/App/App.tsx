@@ -3,7 +3,7 @@ import Container from "../../styles/Container/Container";
 import Header from "../Header/Header";
 import ListPage from "../../pages/ListPage/ListPage";
 
-const App = () => (
+const App = (): React.ReactElement => (
   <>
     <Header />
     <main className="main-content">
