@@ -1,12 +1,14 @@
+import Navigation from "../Navigation/Navigation";
 import HeaderStyled from "./HeaderStyled";
 
-const Header = () => (
+const Header = (): React.ReactElement => (
   <HeaderStyled className="main-header">
     <img
       className="main-header__logo"
       src="./images/flixpicks_logo.png"
       alt="flixpicks logo on black letters"
     />
+    <Navigation />
   </HeaderStyled>
 );
 

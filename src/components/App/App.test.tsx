@@ -1,6 +1,8 @@
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import App from "./App";
+import { ThemeProvider } from "styled-components";
+import mainTheme from "../../styles/mainTheme";
 
 describe("Given an App component", () => {
   describe("When it is rendered on screen on the HomePage", () => {
@@ -9,7 +11,9 @@ describe("Given an App component", () => {
 
       render(
         <MemoryRouter initialEntries={["/home"]}>
-          <App />
+          <ThemeProvider theme={mainTheme}>
+            <App />
+          </ThemeProvider>
         </MemoryRouter>,
       );
 
