@@ -10,8 +10,8 @@ const Navigation = (): React.ReactElement => (
           <img
             src="./images/homeIcon.svg"
             alt="House navigation icon"
-            width="48px"
-            height="48px"
+            width="48"
+            height="48"
             className="navigation-bar__icon"
           />
         </NavLink>
@@ -22,8 +22,8 @@ const Navigation = (): React.ReactElement => (
           <img
             src="./images/addIcon.svg"
             alt="Add movie navigation icon"
-            width="48px"
-            height="48px"
+            width="48"
+            height="48"
             className="navigation-bar__icon"
           />
         </NavLink>

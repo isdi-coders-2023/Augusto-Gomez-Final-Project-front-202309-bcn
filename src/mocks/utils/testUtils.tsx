@@ -6,8 +6,8 @@ import { Provider } from "react-redux";
 
 const customRender = (children: React.ReactElement) => {
   const mockStore = configureStore({
-    reducer: { moviesState: moviesReducer },
-    preloadedState: { moviesState: { movies: moviesMock } },
+    reducer: { movieState: moviesReducer },
+    preloadedState: { movieState: { movies: moviesMock } },
   });
 
   render(<Provider store={mockStore}>{children}</Provider>);
