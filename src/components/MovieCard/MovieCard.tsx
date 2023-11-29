@@ -1,4 +1,5 @@
 import { Movie } from "../../store/features/movies/types";
+import Button from "../Button/Button";
 import MovieCardStyled from "./MovieCardStyled";
 
 interface MovieCardProp {
@@ -42,6 +43,12 @@ const MovieCard = ({
     </div>
     <span className="movie-card__release-date">{getYear(releaseDate)}</span>
     <span className="movie-card__genre">{genre.join(" - ")}</span>
+    <Button
+      actionOnClick={() => {}}
+      className="delete"
+      text="See details"
+      type="button"
+    />
   </MovieCardStyled>
 );
 
