@@ -3,7 +3,7 @@ import { MemoryRouter } from "react-router-dom";
 import App from "./App";
 import { ThemeProvider } from "styled-components";
 import mainTheme from "../../styles/mainTheme";
-import customRender from "../../mocks/utils/testUtils";
+import customRender from "../../testUtils/testUtils";
 
 describe("Given an App component", () => {
   describe("When it is rendered on screen on the HomePage", () => {
