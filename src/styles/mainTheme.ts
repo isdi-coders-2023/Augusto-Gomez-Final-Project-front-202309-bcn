@@ -6,7 +6,7 @@ const mainTheme: DefaultTheme = {
   colors: {
     background: "#EDF5F4",
     light: "#fff",
-    dark: "000",
+    dark: "#000",
   },
   typography: {
     main: "'Outfit Variable', sans-serif",
