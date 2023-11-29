@@ -1,22 +1,16 @@
-import { useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { loadMoviesActionCreator } from "../../store/features/movies/moviesSlice";
-import { moviesMock } from "../../mocks/movieMocks";
+import { useAppSelector } from "../../store/hooks";
 import MovieListStyled from "./MovieListStyled";
+import MovieCard from "../MovieCard/MovieCard";
 
 const MovieList = () => {
-  const moviesState = useAppSelector((state) => state.movieState);
-
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    dispatch(loadMoviesActionCreator(moviesMock));
-  }, [dispatch]);
+  const moviesState = useAppSelector((state) => state.moviesState);
 
   return (
     <MovieListStyled className="movie-list">
       {moviesState.movies.map((movie) => (
-        <h2 className="movie-list__item">{movie.name}</h2>
+        <li key={movie._id} className="movie-list__item">
+          <MovieCard movie={movie} />
+        </li>
       ))}
     </MovieListStyled>
   );

@@ -8,4 +8,5 @@ export interface Movie {
   genre: string[];
   description: string;
   imageUrl: string;
+  score: string;
 }

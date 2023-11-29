@@ -14,7 +14,7 @@ const moviesSlice = createSlice({
     loadMovies: (
       currentState: MovieStructure,
       action: PayloadAction<Movie[]>,
-    ) => ({ ...currentState, movies: action.payload }),
+    ): MovieStructure => ({ ...currentState, movies: action.payload }),
   },
 });
 
