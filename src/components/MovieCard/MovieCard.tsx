@@ -45,7 +45,7 @@ const MovieCard = ({
     <span className="movie-card__genre">{genre.join(" - ")}</span>
     <Button
       actionOnClick={() => {}}
-      className="details"
+      className="delete"
       text="See details"
       type="button"
     />

@@ -18,5 +18,18 @@ describe("Given a Navigation component", () => {
 
       expect(navigationAltText).toBeInTheDocument();
     });
+    test("Then it should show a link with a 'to home' text", () => {
+      const expectedLinkText = "to Home";
+
+      customRender(
+        <BrowserRouter>
+          <Navigation />
+        </BrowserRouter>,
+      );
+
+      const expectedlink = screen.getByRole("link", { name: expectedLinkText });
+
+      expect(expectedlink).toBeInTheDocument();
+    });
   });
 });
