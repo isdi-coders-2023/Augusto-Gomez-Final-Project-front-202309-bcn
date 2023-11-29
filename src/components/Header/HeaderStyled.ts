@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 const HeaderStyled = styled.header`
-  max-width: 400px;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -10,6 +9,7 @@ const HeaderStyled = styled.header`
   .main-header {
     &__logo {
       max-width: 197px;
+      margin-top: 40px;
     }
   }
 `;

@@ -7,7 +7,6 @@ const ListPageStyled = styled.section`
       flex-direction: column;
       align-items: center;
       gap: 15px;
-      max-width: 400px;
     }
 
     &__title {
