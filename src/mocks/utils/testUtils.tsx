@@ -1,0 +1,16 @@
+import { configureStore } from "@reduxjs/toolkit";
+import { moviesReducer } from "../../store/features/movies/moviesSlice";
+import { moviesMock } from "../movieMocks";
+import { render } from "@testing-library/react";
+import { Provider } from "react-redux";
+
+const customRender = (children: React.ReactElement) => {
+  const mockStore = configureStore({
+    reducer: { moviesState: moviesReducer },
+    preloadedState: { moviesState: { movies: moviesMock } },
+  });
+
+  render(<Provider store={mockStore}>{children}</Provider>);
+};
+
+export default customRender;
