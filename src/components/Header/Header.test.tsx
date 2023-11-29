@@ -1,19 +1,17 @@
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import Header from "./Header";
 import { BrowserRouter } from "react-router-dom";
-import { ThemeProvider } from "styled-components";
-import mainTheme from "../../styles/mainTheme";
+
+import customRender from "../../testUtils/testUtils";
 
 describe("Given a Header component", () => {
   describe("When it is renderen on screen", () => {
     test("Then it should show a text flixpicks logo on black letters 'flixpicks logo on black letters' on an alternative text", () => {
       const expectedAlternativeText = "flixpicks logo on black letters";
 
-      render(
+      customRender(
         <BrowserRouter>
-          <ThemeProvider theme={mainTheme}>
-            <Header />
-          </ThemeProvider>
+          <Header />
         </BrowserRouter>,
       );
 

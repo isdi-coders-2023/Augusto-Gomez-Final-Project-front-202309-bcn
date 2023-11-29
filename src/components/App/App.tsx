@@ -6,14 +6,12 @@ import ListPage from "../../pages/ListPage/ListPage";
 const App = (): React.ReactElement => (
   <>
     <Header />
-    <main className="main-content">
-      <Container>
-        <Routes>
-          <Route path="/" element={<Navigate to={"/home"} />} />
-          <Route path="/home" element={<ListPage />} />
-        </Routes>
-      </Container>
-    </main>
+    <Container>
+      <Routes>
+        <Route path="/" element={<Navigate to={"/home"} />} />
+        <Route path="/home" element={<ListPage />} />
+      </Routes>
+    </Container>
   </>
 );
 

@@ -1,4 +1,4 @@
-import { moviesMock } from "../../../mocks/movieMocks";
+import { moviesMock } from "../../../mocks/moviesMocks";
 import {
   MovieStructure,
   loadMoviesActionCreator,
