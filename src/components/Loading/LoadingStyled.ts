@@ -19,6 +19,11 @@ const LoadingStyled = styled.div`
       font-family: ${({ theme }) => theme.typography.tertiary};
     }
   }
+  @media (prefers-reduced-motion) {
+    .loading__icon {
+      display: none;
+    }
+  }
 `;
 
 export default LoadingStyled;
