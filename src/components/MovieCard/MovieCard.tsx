@@ -1,5 +1,6 @@
 import { Movie } from "../../store/features/movies/types";
 import MovieCardStyled from "./MovieCardStyled";
+import getScoreStars from "../../utils/cardFunctions";
 
 interface MovieCardProp {
   movie: Movie;
@@ -8,35 +9,6 @@ interface MovieCardProp {
 const MovieCard = ({
   movie: { genre, name, imageUrl, releaseDate, score },
 }: MovieCardProp) => {
-  const getScoreStars = (score: string) => {
-    const roundedScore = Math.floor(+score);
-
-    let stars = "";
-
-    switch (roundedScore) {
-      case 0:
-        stars = "🤮";
-        break;
-      case 1:
-        stars = "⭐";
-        break;
-      case 2:
-        stars = "⭐⭐";
-        break;
-      case 3:
-        stars = "⭐⭐⭐";
-        break;
-      case 4:
-        stars = "⭐⭐⭐⭐";
-        break;
-      case 5:
-        stars = "⭐⭐⭐⭐⭐";
-        break;
-    }
-
-    return stars;
-  };
-
   return (
     <MovieCardStyled className="movie-card">
       <img

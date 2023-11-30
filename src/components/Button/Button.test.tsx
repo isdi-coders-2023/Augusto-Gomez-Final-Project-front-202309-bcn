@@ -1,5 +1,5 @@
 import Button from "./Button";
-import customRender from "../../testUtils/testUtils";
+import { customRenderWithBrowser } from "../../testUtils/testUtils";
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
@@ -9,7 +9,7 @@ describe("Given a Button component", () => {
 
   describe("When it receives a 'See details' text", () => {
     test("Then it should a text 'See details' on a button on screen", () => {
-      customRender(
+      customRenderWithBrowser(
         <Button
           text={expectedText}
           type="button"
@@ -26,7 +26,7 @@ describe("Given a Button component", () => {
 
   describe("When it receives an action and a click from the user", () => {
     test("Then it should call the received function one time", async () => {
-      customRender(
+      customRenderWithBrowser(
         <Button
           text={expectedText}
           type="button"
