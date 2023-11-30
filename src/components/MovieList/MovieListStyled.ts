@@ -5,6 +5,7 @@ const MovieListStyled = styled.ul`
   flex-direction: column;
   align-items: center;
   margin-top: 80px;
+  gap: 20px;
 `;
 
 export default MovieListStyled;
