@@ -5,6 +5,7 @@ import { render } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { ThemeProvider } from "styled-components";
 import mainTheme from "../styles/mainTheme";
+import GlobalStyle from "../styles/GlobalStyle";
 
 const customRender = (children: React.ReactElement) => {
   const mockStore = configureStore({
@@ -14,6 +15,7 @@ const customRender = (children: React.ReactElement) => {
 
   render(
     <ThemeProvider theme={mainTheme}>
+      <GlobalStyle />
       <Provider store={mockStore}>{children}</Provider>
     </ThemeProvider>,
   );

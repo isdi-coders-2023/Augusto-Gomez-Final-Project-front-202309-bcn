@@ -27,6 +27,7 @@ const MovieCardStyled = styled.article`
       margin: 0;
       font-size: 16px;
       font-weight: 500;
+      max-width: 124px;
     }
   }
 `;

@@ -3,14 +3,18 @@ import MovieList from "../../components/MovieList/MovieList";
 import { useAppDispatch } from "../../store/hooks";
 import ListPageStyled from "./ListPageStyled";
 import { loadMoviesActionCreator } from "../../store/features/movies/moviesSlice";
-import { moviesMock } from "../../mocks/moviesMocks";
+import useMoviesApi from "../../hooks/useMoviesApi";
 
 const ListPage = (): React.ReactElement => {
   const dispatch = useAppDispatch();
+  const { getMovies } = useMoviesApi();
 
   useEffect(() => {
-    dispatch(loadMoviesActionCreator(moviesMock));
-  }, [dispatch]);
+    (async () => {
+      const movies = await getMovies();
+      dispatch(loadMoviesActionCreator(movies.movies));
+    })();
+  }, [dispatch, getMovies]);
 
   return (
     <ListPageStyled className="list-page">
