@@ -6,8 +6,9 @@ import { Provider } from "react-redux";
 import { ThemeProvider } from "styled-components";
 import mainTheme from "../styles/mainTheme";
 import GlobalStyle from "../styles/GlobalStyle";
+import { BrowserRouter } from "react-router-dom";
 
-const customRender = (children: React.ReactElement) => {
+export const customRender = (children: React.ReactElement) => {
   const mockStore = configureStore({
     reducer: { moviesState: moviesReducer },
     preloadedState: { moviesState: { movies: moviesMock } },
@@ -21,4 +22,17 @@ const customRender = (children: React.ReactElement) => {
   );
 };
 
-export default customRender;
+export const customRenderWithBrowser = (children: React.ReactElement) => {
+  const mockStore = configureStore({
+    reducer: { moviesState: moviesReducer },
+    preloadedState: { moviesState: { movies: moviesMock } },
+  });
+
+  render(
+    <ThemeProvider theme={mainTheme}>
+      <BrowserRouter>
+        <Provider store={mockStore}>{children}</Provider>
+      </BrowserRouter>
+    </ThemeProvider>,
+  );
+};
