@@ -12,9 +12,9 @@ describe("Given a Button component", () => {
       customRender(
         <Button
           text={expectedText}
-          type={"button"}
+          type="button"
           actionOnClick={() => {}}
-          className={""}
+          className=""
         />,
       );
 
@@ -29,9 +29,9 @@ describe("Given a Button component", () => {
       customRender(
         <Button
           text={expectedText}
-          type={"button"}
+          type="button"
           actionOnClick={mockAction}
-          className={""}
+          className=""
         />,
       );
 

@@ -3,7 +3,7 @@ import ButtonStyled from "./ButtonStyled";
 interface ButtonProps {
   text: string;
   type: "submit" | "button";
-  actionOnClick: () => void;
+  actionOnClick?: () => void;
   className: string;
 }
 
@@ -14,7 +14,7 @@ const Button = ({
   className,
 }: ButtonProps): React.ReactElement => (
   <ButtonStyled
-    className={`button button__${className}`}
+    className={`button ${className}`}
     type={type}
     onClick={actionOnClick}
   >
