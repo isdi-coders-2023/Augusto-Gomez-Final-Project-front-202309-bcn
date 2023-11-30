@@ -27,7 +27,7 @@ describe("Given an App component", () => {
       const expectedTitle = "Arrival";
 
       customRender(
-        <MemoryRouter>
+        <MemoryRouter initialEntries={["/home"]}>
           <ThemeProvider theme={mainTheme}>
             <App />
           </ThemeProvider>
@@ -43,7 +43,7 @@ describe("Given an App component", () => {
       const expectedAlternativeText = "Cover of La La Land";
 
       customRender(
-        <MemoryRouter>
+        <MemoryRouter initialEntries={["/home"]}>
           <ThemeProvider theme={mainTheme}>
             <App />
           </ThemeProvider>

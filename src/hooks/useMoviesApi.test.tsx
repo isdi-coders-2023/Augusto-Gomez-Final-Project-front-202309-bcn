@@ -1,6 +1,7 @@
 import { renderHook } from "@testing-library/react";
 import useMoviesApi from "./useMoviesApi";
 import { moviesMock } from "../mocks/moviesMocks";
+import { providerWrapper } from "../testUtils/testUtils";
 
 describe("Given a useMoviesApi custom hook", () => {
   describe("When it calls its getMovies function", () => {
@@ -9,7 +10,7 @@ describe("Given a useMoviesApi custom hook", () => {
         result: {
           current: { getMovies },
         },
-      } = renderHook(() => useMoviesApi());
+      } = renderHook(() => useMoviesApi(), { wrapper: providerWrapper });
 
       const expectedMovies = await getMovies();
 
