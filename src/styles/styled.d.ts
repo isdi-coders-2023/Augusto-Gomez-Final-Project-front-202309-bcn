@@ -13,6 +13,7 @@ declare module "styled-components" {
     typography: {
       main: string;
       secondary: string;
+      tertiary: string;
     };
   }
 }

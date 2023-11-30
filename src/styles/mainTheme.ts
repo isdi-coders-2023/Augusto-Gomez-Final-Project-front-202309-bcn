@@ -1,6 +1,7 @@
 import { DefaultTheme } from "styled-components/dist/types";
 import "@fontsource-variable/inter";
 import "@fontsource-variable/outfit";
+import "@fontsource/inria-sans";
 
 const mainTheme: DefaultTheme = {
   colors: {
@@ -13,6 +14,7 @@ const mainTheme: DefaultTheme = {
   typography: {
     main: "'Outfit Variable', sans-serif",
     secondary: "'Inter Variable', sans-serif",
+    tertiary: "'Inria Sans', sans-serif",
   },
 };
 

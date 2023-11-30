@@ -11,6 +11,7 @@ const MovieCardStyled = styled.article`
   font-family: ${({ theme }) => theme.typography.secondary};
   font-weight: 500;
   letter-spacing: -0.5px;
+  margin-top: -20px;
 
   .movie-card {
     &__image {
