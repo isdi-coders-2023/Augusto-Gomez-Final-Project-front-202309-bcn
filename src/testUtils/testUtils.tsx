@@ -7,12 +7,23 @@ import { ThemeProvider } from "styled-components";
 import mainTheme from "../styles/mainTheme";
 import GlobalStyle from "../styles/GlobalStyle";
 import { BrowserRouter } from "react-router-dom";
+import { uiReducer } from "../store/features/UI/uiSlice";
+import { PropsWithChildren } from "react";
+
+const getMockStore = () => {
+  const mockStore = configureStore({
+    reducer: { moviesState: moviesReducer, uiState: uiReducer },
+    preloadedState: {
+      moviesState: { movies: moviesMock },
+      uiState: { isLoading: false },
+    },
+  });
+
+  return mockStore;
+};
 
 export const customRender = (children: React.ReactElement) => {
-  const mockStore = configureStore({
-    reducer: { moviesState: moviesReducer },
-    preloadedState: { moviesState: { movies: moviesMock } },
-  });
+  const mockStore = getMockStore();
 
   render(
     <ThemeProvider theme={mainTheme}>
@@ -23,10 +34,7 @@ export const customRender = (children: React.ReactElement) => {
 };
 
 export const customRenderWithBrowser = (children: React.ReactElement) => {
-  const mockStore = configureStore({
-    reducer: { moviesState: moviesReducer },
-    preloadedState: { moviesState: { movies: moviesMock } },
-  });
+  const mockStore = getMockStore();
 
   render(
     <ThemeProvider theme={mainTheme}>
@@ -35,4 +43,10 @@ export const customRenderWithBrowser = (children: React.ReactElement) => {
       </BrowserRouter>
     </ThemeProvider>,
   );
+};
+
+export const providerWrapper = ({ children }: PropsWithChildren) => {
+  const mockStore = getMockStore();
+
+  return <Provider store={mockStore}>{children}</Provider>;
 };
