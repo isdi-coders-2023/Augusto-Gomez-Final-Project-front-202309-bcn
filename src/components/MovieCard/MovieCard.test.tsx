@@ -1,14 +1,14 @@
 import { screen } from "@testing-library/react";
 import MovieCard from "./MovieCard";
 import movieMock from "../../mocks/movieMock";
-import customRender from "../../testUtils/testUtils";
+import { customRenderWithBrowser } from "../../testUtils/testUtils";
 
 describe("Given a MovieCard component", () => {
   describe("When it is rendered on screen and it receives a movie Arrival", () => {
     test("Then it should show 'Cover of Arrival' alternative text", () => {
       const expectedAlternativeText = "Cover of Arrival";
 
-      customRender(<MovieCard movie={movieMock} />);
+      customRenderWithBrowser(<MovieCard movie={movieMock} />);
 
       const expectedImage = screen.getByAltText(expectedAlternativeText);
 
@@ -18,7 +18,7 @@ describe("Given a MovieCard component", () => {
     test("Then it should show 'Arrival' text on a heading", () => {
       const expectedTitle = "Arrival";
 
-      customRender(<MovieCard movie={movieMock} />);
+      customRenderWithBrowser(<MovieCard movie={movieMock} />);
 
       const expectedImage = screen.getByRole("heading", {
         name: expectedTitle,
@@ -30,7 +30,7 @@ describe("Given a MovieCard component", () => {
     test("Then it should show '2016' on a text", () => {
       const expectedText = "2016";
 
-      customRender(<MovieCard movie={movieMock} />);
+      customRenderWithBrowser(<MovieCard movie={movieMock} />);
 
       const text = screen.getByText(expectedText);
 

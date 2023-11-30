@@ -1,5 +1,5 @@
 import { screen } from "@testing-library/react";
-import customRender from "../../testUtils/testUtils";
+import { customRenderWithBrowser } from "../../testUtils/testUtils";
 import MovieList from "./MovieList";
 
 describe("Given a MovieList component", () => {
@@ -7,7 +7,7 @@ describe("Given a MovieList component", () => {
     test("Then it should show a 'Cover of La La Land' on an image's alternative text", () => {
       const expectedAlternativeText = "Cover of La La Land";
 
-      customRender(<MovieList />);
+      customRenderWithBrowser(<MovieList />);
 
       const expectedImage = screen.getByAltText(expectedAlternativeText);
       expect(expectedImage).toBeInTheDocument();
