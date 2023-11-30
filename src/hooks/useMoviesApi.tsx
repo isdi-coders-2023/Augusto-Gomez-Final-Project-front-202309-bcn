@@ -10,7 +10,7 @@ const useMoviesApi = () => {
     return movies;
   }, []);
 
-  return getMovies;
+  return { getMovies };
 };
 
 export default useMoviesApi;
