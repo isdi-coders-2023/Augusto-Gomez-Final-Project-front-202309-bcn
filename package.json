@@ -16,6 +16,7 @@
   "dependencies": {
     "@fontsource-variable/inter": "^5.0.15",
     "@fontsource-variable/outfit": "^5.0.8",
+    "@fontsource/inria-sans": "^5.0.8",
     "@reduxjs/toolkit": "^1.9.7",
     "@testing-library/user-event": "^14.5.1",
     "axios": "^1.6.2",
