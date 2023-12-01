@@ -9,14 +9,7 @@ describe("Given a Button component", () => {
 
   describe("When it receives a 'See details' text", () => {
     test("Then it should a text 'See details' on a button on screen", () => {
-      customRenderWithBrowser(
-        <Button
-          text={expectedText}
-          type="button"
-          actionOnClick={() => {}}
-          className=""
-        />,
-      );
+      customRenderWithBrowser(<Button text={expectedText} type="button" />);
 
       const button = screen.getByRole("button", { name: expectedText });
 
@@ -27,12 +20,7 @@ describe("Given a Button component", () => {
   describe("When it receives an action and a click from the user", () => {
     test("Then it should call the received function one time", async () => {
       customRenderWithBrowser(
-        <Button
-          text={expectedText}
-          type="button"
-          actionOnClick={mockAction}
-          className=""
-        />,
+        <Button text={expectedText} type="button" actionOnClick={mockAction} />,
       );
 
       const button = screen.getByRole("button", { name: expectedText });

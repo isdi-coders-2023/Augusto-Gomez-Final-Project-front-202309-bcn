@@ -11,8 +11,10 @@ const ListPage = (): React.ReactElement => {
 
   useEffect(() => {
     (async () => {
-      const movies = await getMovies();
-      dispatch(loadMoviesActionCreator(movies.movies));
+      const movies = await getMovies(import.meta.env.VITE_API_URL);
+      if (movies) {
+        dispatch(loadMoviesActionCreator(movies.movies));
+      }
     })();
   }, [dispatch, getMovies]);
 

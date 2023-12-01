@@ -7,25 +7,36 @@ import {
   hideLoadingActionCreator,
   showLoadingActionCreator,
 } from "../store/features/UI/uiSlice";
+import { useNavigate } from "react-router-dom";
 
-interface UseMoviesApiStructure {
-  getMovies: () => Promise<MovieStructure>;
+export interface UseMoviesApiStructure {
+  getMovies: (apiUrl: string) => Promise<MovieStructure | void>;
 }
 
 const useMoviesApi = (): UseMoviesApiStructure => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
-  const getMovies = useCallback(async (): Promise<MovieStructure> => {
-    axios.defaults.baseURL = import.meta.env.VITE_API_URL;
+  const getMovies = useCallback(
+    async (apiUrl: string): Promise<MovieStructure | undefined> => {
+      dispatch(showLoadingActionCreator());
 
-    dispatch(showLoadingActionCreator());
+      try {
+        const { data: movies } = await axios.get<{ movies: Movie[] }>(
+          `${apiUrl}/movies`,
+        );
 
-    const { data: movies } = await axios.get<{ movies: Movie[] }>("/movies");
+        dispatch(hideLoadingActionCreator());
 
-    dispatch(hideLoadingActionCreator());
+        return movies;
+      } catch {
+        navigate("/error-page");
 
-    return movies;
-  }, [dispatch]);
+        dispatch(hideLoadingActionCreator());
+      }
+    },
+    [dispatch, navigate],
+  );
 
   return { getMovies };
 };
