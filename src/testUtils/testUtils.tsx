@@ -48,5 +48,9 @@ export const customRenderWithBrowser = (children: React.ReactElement) => {
 export const providerWrapper = ({ children }: PropsWithChildren) => {
   const mockStore = getMockStore();
 
-  return <Provider store={mockStore}>{children}</Provider>;
+  return (
+    <BrowserRouter>
+      <Provider store={mockStore}>{children}</Provider>
+    </BrowserRouter>
+  );
 };

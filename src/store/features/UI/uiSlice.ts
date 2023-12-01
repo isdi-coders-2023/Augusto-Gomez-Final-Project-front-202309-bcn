@@ -1,21 +1,21 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export interface uiStructure {
+export interface UiStructure {
   isLoading: boolean;
 }
 
-const initialUiState: uiStructure = { isLoading: false };
+const initialUiState: UiStructure = { isLoading: false };
 
 const uiSlice = createSlice({
   name: "UiState",
   initialState: initialUiState,
   reducers: {
-    showLoading: (currentState: uiStructure) => ({
+    showLoading: (currentState: UiStructure) => ({
       ...currentState,
       isLoading: true,
     }),
 
-    hideLoding: (currentState: uiStructure) => ({
+    hideLoading: (currentState: UiStructure) => ({
       ...currentState,
       isLoading: false,
     }),
@@ -25,7 +25,7 @@ const uiSlice = createSlice({
 export const {
   actions: {
     showLoading: showLoadingActionCreator,
-    hideLoding: hideLoadingActionCreator,
+    hideLoading: hideLoadingActionCreator,
   },
   reducer: uiReducer,
 } = uiSlice;

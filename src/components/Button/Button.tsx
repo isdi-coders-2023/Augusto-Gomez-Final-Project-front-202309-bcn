@@ -4,14 +4,14 @@ interface ButtonProps {
   text: string;
   type: "submit" | "button";
   actionOnClick?: () => void;
-  className: string;
+  modifier?: string;
 }
 
 const Button = ({
   text,
   type,
   actionOnClick,
-  className,
+  modifier: className,
 }: ButtonProps): React.ReactElement => (
   <ButtonStyled
     className={`button ${className}`}

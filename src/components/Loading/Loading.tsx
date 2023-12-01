@@ -8,6 +8,8 @@ const Loading = (): React.ReactElement => (
         src="images/loading.svg"
         alt="Loading icon"
         className="loading__icon"
+        width="200"
+        height="200"
       />
     </div>
   </LoadingStyled>

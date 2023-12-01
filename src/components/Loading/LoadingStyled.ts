@@ -5,6 +5,7 @@ const LoadingStyled = styled.div`
   width: 100%;
   height: 100%;
   position: fixed;
+
   .loading {
     &__container {
       display: flex;
@@ -19,6 +20,7 @@ const LoadingStyled = styled.div`
       font-family: ${({ theme }) => theme.typography.tertiary};
     }
   }
+
   @media (prefers-reduced-motion) {
     .loading__icon {
       display: none;
