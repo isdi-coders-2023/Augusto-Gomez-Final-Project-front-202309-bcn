@@ -13,11 +13,11 @@ const ButtonStyled = styled.button`
   min-height: 48px;
 
   &.button {
-    &__delete {
+    &--delete {
       background-color: #ff6565;
     }
 
-    &__details {
+    &--details {
       min-height: 48px;
       align-self: end;
       border-radius: 24px;

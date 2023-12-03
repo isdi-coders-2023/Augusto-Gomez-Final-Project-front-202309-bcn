@@ -1,14 +1,26 @@
 import { Movie } from "../../store/features/movies/types";
 import MovieCardStyled from "./MovieCardStyled";
 import getScoreStars from "../../utils/cardFunctions";
+import Button from "../Button/Button";
+import { useAppDispatch } from "../../store/hooks";
+import { deleteMovieActionCreator } from "../../store/features/movies/moviesSlice";
+import useMoviesApi from "../../hooks/useMoviesApi";
 
 interface MovieCardProp {
   movie: Movie;
 }
 
 const MovieCard = ({
-  movie: { genre, name, imageUrl, releaseDate, score },
+  movie: { genre, name, imageUrl, releaseDate, score, _id },
 }: MovieCardProp) => {
+  const dispatch = useAppDispatch();
+  const { deleteMovieFromApi } = useMoviesApi();
+
+  const deleteMovie = (id: string): void => {
+    deleteMovieFromApi(import.meta.env.VITE_API_URL, id);
+    dispatch(deleteMovieActionCreator);
+  };
+
   return (
     <MovieCardStyled className="movie-card">
       <img
@@ -28,6 +40,14 @@ const MovieCard = ({
         {releaseDate.slice(0, 4)}
       </span>
       <span className="movie-card__genre">{genre.join(" - ")}</span>
+      <Button
+        text="Delete"
+        type="button"
+        actionOnClick={() => {
+          deleteMovie(_id);
+        }}
+        modifier="delete"
+      />
     </MovieCardStyled>
   );
 };
