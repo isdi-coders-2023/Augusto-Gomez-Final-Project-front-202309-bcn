@@ -9,6 +9,7 @@ import GlobalStyle from "../styles/GlobalStyle";
 import { BrowserRouter } from "react-router-dom";
 import { uiReducer } from "../store/features/UI/uiSlice";
 import { PropsWithChildren } from "react";
+import { store } from "../store";
 
 const getMockStore = () => {
   const mockStore = configureStore({
@@ -46,11 +47,9 @@ export const customRenderWithBrowser = (children: React.ReactElement) => {
 };
 
 export const providerWrapper = ({ children }: PropsWithChildren) => {
-  const mockStore = getMockStore();
-
   return (
     <BrowserRouter>
-      <Provider store={mockStore}>{children}</Provider>
+      <Provider store={store}>{children}</Provider>
     </BrowserRouter>
   );
 };

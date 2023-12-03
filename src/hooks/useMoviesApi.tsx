@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 
 export interface UseMoviesApiStructure {
   getMovies: (apiUrl: string) => Promise<MovieStructure | void>;
+  deleteMovieFromApi: (apiUrl: string, id: string) => Promise<void>;
 }
 
 const useMoviesApi = (): UseMoviesApiStructure => {
@@ -38,7 +39,20 @@ const useMoviesApi = (): UseMoviesApiStructure => {
     [dispatch, navigate],
   );
 
-  return { getMovies };
+  const deleteMovieFromApi = useCallback(
+    async (apiUrl: string, id: string): Promise<void> => {
+      dispatch(showLoadingActionCreator());
+
+      const { data } = await axios.delete(`${apiUrl}/movies/${id}`);
+
+      dispatch(hideLoadingActionCreator());
+
+      return data;
+    },
+    [dispatch],
+  );
+
+  return { getMovies, deleteMovieFromApi };
 };
 
 export default useMoviesApi;

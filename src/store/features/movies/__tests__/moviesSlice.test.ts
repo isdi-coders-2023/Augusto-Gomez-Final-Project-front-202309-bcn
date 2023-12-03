@@ -1,9 +1,9 @@
-import { moviesMock } from "../../../mocks/moviesMocks";
+import { moviesMock } from "../../../../mocks/moviesMocks";
 import {
   MovieStructure,
   loadMoviesActionCreator,
   moviesReducer,
-} from "./moviesSlice";
+} from "../moviesSlice";
 
 describe("Given a loadMovies reducer on a moviesSlice", () => {
   describe("When it receives a currentState and the movies La La Land and Arrival", () => {

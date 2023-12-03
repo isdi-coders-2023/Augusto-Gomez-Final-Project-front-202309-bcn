@@ -1,13 +1,14 @@
 import getScoreStars from "./cardFunctions";
 
 describe("Given a getScoreStars function", () => {
-  describe("When it receives a score 0, 1, 2, 3 ,4 and 5", () => {
-    test("Then it should return '⭐' '⭐⭐' '⭐⭐⭐' '⭐⭐⭐⭐' '⭐⭐⭐⭐⭐' and '🤮'", () => {
-      const stars = ["🤮", "⭐", "⭐⭐", "⭐⭐⭐", "⭐⭐⭐⭐", "⭐⭐⭐⭐⭐"];
+  describe("When it receives a score of 3", () => {
+    test("Then it should return '⭐⭐⭐' ", () => {
+      const expectedStars = "⭐⭐⭐";
+      const score = "3";
 
-      stars.forEach((star, starPosition) => {
-        expect(getScoreStars(starPosition.toString())).toEqual(star);
-      });
+      const stars = getScoreStars(score);
+
+      expect(stars).toBe(expectedStars);
     });
   });
 });

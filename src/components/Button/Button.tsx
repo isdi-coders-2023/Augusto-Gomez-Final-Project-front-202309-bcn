@@ -14,7 +14,7 @@ const Button = ({
   modifier: className,
 }: ButtonProps): React.ReactElement => (
   <ButtonStyled
-    className={`button ${className}`}
+    className={`button ${className ? `button--${className}` : ""}`}
     type={type}
     onClick={actionOnClick}
   >
