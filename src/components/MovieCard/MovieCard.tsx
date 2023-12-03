@@ -18,7 +18,7 @@ const MovieCard = ({
 
   const deleteMovie = (id: string): void => {
     deleteMovieFromApi(import.meta.env.VITE_API_URL, id);
-    dispatch(deleteMovieActionCreator);
+    dispatch(deleteMovieActionCreator(id));
   };
 
   return (
