@@ -5,11 +5,7 @@ const apiURL = import.meta.env.VITE_API_URL;
 
 export const handlers = [
   http.get(`${apiURL}/movies`, () => HttpResponse.json(moviesMock)),
-  http.delete(`${apiURL}/movies/65637a12d4b93a3787b660f6`, () =>
+  http.delete(`${apiURL}/movies/65637a12d4b93a3787b660f7`, () =>
     HttpResponse.json({}),
   ),
-];
-
-export const errorHandlers = [
-  http.get(`${apiURL}/movies`, () => HttpResponse.error()),
 ];
