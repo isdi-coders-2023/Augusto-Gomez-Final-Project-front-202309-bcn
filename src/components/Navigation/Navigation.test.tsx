@@ -14,7 +14,7 @@ describe("Given a Navigation component", () => {
       expect(navigationAltText).toBeInTheDocument();
     });
     test("Then it should show a link with a 'to home' text", () => {
-      const expectedLinkText = "Home";
+      const expectedLinkText = "Home House navigation icon";
 
       customRenderWithBrowser(<Navigation />);
 

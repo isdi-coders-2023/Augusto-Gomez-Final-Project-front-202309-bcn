@@ -16,8 +16,8 @@ const MovieCard = ({
   const dispatch = useAppDispatch();
   const { deleteMovieFromApi } = useMoviesApi();
 
-  const deleteMovie = (id: string): void => {
-    deleteMovieFromApi(import.meta.env.VITE_API_URL, id);
+  const deleteMovie = async (id: string): Promise<void> => {
+    await deleteMovieFromApi(import.meta.env.VITE_API_URL, id);
     dispatch(deleteMovieActionCreator(id));
   };
 
@@ -46,7 +46,7 @@ const MovieCard = ({
         actionOnClick={() => {
           deleteMovie(_id);
         }}
-        modifier="delete"
+        modifier="button--delete"
       />
     </MovieCardStyled>
   );

@@ -10,7 +10,7 @@ describe("Given a Button component", () => {
   describe("When it receives a 'See details' text", () => {
     test("Then it should a text 'See details' on a button on screen", () => {
       customRenderWithBrowser(
-        <Button text={expectedText} type="button" modifier="delete" />,
+        <Button text={expectedText} type="button" modifier="button--delete" />,
       );
 
       const button = screen.getByRole("button", { name: expectedText });

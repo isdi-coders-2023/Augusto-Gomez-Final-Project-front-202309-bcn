@@ -4,17 +4,17 @@ interface ButtonProps {
   text: string;
   type: "submit" | "button";
   actionOnClick?: () => void;
-  modifier?: string;
+  modifier?: "button--delete" | "button--details";
 }
 
 const Button = ({
   text,
   type,
   actionOnClick,
-  modifier: className,
+  modifier,
 }: ButtonProps): React.ReactElement => (
   <ButtonStyled
-    className={"button" + className ? ` button--${className}` : ""}
+    className={`button ${modifier}`}
     type={type}
     onClick={actionOnClick}
   >

@@ -5,7 +5,7 @@ const Navigation = (): React.ReactElement => (
   <NavigationStyled className="navigation-bar">
     <ul className="navigation-bar__container">
       <li className="navigation-bar__link-container">
-        <NavLink className="navigation-bar__link" to="/home" aria-label="Home">
+        <NavLink className="navigation-bar__link" to="/home">
           <span className="navigation-bar__text">Home</span>
           <img
             src="images/homeIcon.svg"
@@ -17,11 +17,7 @@ const Navigation = (): React.ReactElement => (
         </NavLink>
       </li>
       <li className="navigation-bar__link-container">
-        <NavLink
-          className="navigation-bar__link"
-          to="/home"
-          aria-label="Add Movie"
-        >
+        <NavLink className="navigation-bar__link" to="/">
           <span className="navigation-bar__text">Add movie</span>
           <img
             src="images/addIcon.svg"
