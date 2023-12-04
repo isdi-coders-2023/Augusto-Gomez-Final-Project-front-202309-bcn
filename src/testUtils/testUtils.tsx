@@ -10,6 +10,7 @@ import { BrowserRouter } from "react-router-dom";
 import { uiReducer } from "../store/features/UI/uiSlice";
 import { PropsWithChildren } from "react";
 import { store } from "../store";
+import { ToastContainer } from "react-toastify";
 
 const getMockStore = () => {
   const mockStore = configureStore({
@@ -40,6 +41,7 @@ export const customRenderWithBrowser = (children: React.ReactElement) => {
   render(
     <ThemeProvider theme={mainTheme}>
       <BrowserRouter>
+        <ToastContainer />
         <Provider store={mockStore}>{children}</Provider>
       </BrowserRouter>
     </ThemeProvider>,
