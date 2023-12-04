@@ -8,14 +8,20 @@ import {
   showLoadingActionCreator,
 } from "../store/features/UI/uiSlice";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { setStyle } from "../utils/toastifyFunctions";
 
 export interface UseMoviesApiStructure {
   getMovies: (apiUrl: string) => Promise<MovieStructure | void>;
-  deleteMovieFromApi: (apiUrl: string, id: string) => Promise<void>;
+  deleteMovieFromApi: (
+    apiUrl: string,
+    id: string,
+  ) => Promise<Record<string, never> | void>;
 }
 
 const useMoviesApi = (): UseMoviesApiStructure => {
   const dispatch = useAppDispatch();
+
   const navigate = useNavigate();
 
   const getMovies = useCallback(
@@ -40,15 +46,35 @@ const useMoviesApi = (): UseMoviesApiStructure => {
   );
 
   const deleteMovieFromApi = useCallback(
-    async (apiUrl: string, id: string): Promise<void> => {
-      dispatch(showLoadingActionCreator());
+    async (
+      apiUrl: string,
+      id: string,
+    ): Promise<Record<string, never> | void> => {
+      try {
+        dispatch(showLoadingActionCreator());
 
-      const { data } = await axios.delete(`${apiUrl}/movies/${id}`);
+        const { data } = await axios.delete<Record<string, never>>(
+          `${apiUrl}/movies/${id}`,
+        );
 
-      dispatch(hideLoadingActionCreator());
+        toast.success(
+          "Success! You have deleted a movie",
+          setStyle("#55b938", "#ccEAc4"),
+        );
 
-      return data;
+        dispatch(hideLoadingActionCreator());
+
+        return data;
+      } catch {
+        dispatch(hideLoadingActionCreator());
+
+        toast.error(
+          "Error! Failed to delete a movie",
+          setStyle("#d65745", "#F3CDC8"),
+        );
+      }
     },
+
     [dispatch],
   );
 
