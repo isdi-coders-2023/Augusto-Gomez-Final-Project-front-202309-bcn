@@ -49,13 +49,17 @@ describe("Given a MovieCard component", () => {
     const expectedButtonName = "Delete";
 
     test("Then it should delete the Arrival movie", async () => {
+      const expectedMovieTitle = "Arrival";
+
       customRenderWithBrowser(<MovieCard movie={movieMock} />);
 
       const deleteButton = screen.getByRole("button", {
         name: expectedButtonName,
       });
 
-      const movieTitle = screen.getByRole("heading", { name: "Arrival" });
+      const movieTitle = screen.getByRole("heading", {
+        name: expectedMovieTitle,
+      });
 
       await userEvent.click(deleteButton);
 
@@ -67,19 +71,23 @@ describe("Given a MovieCard component", () => {
     test("Then it should show a feedback message with 'Success! You have deleted a movie' ", async () => {
       customRenderWithBrowser(<MovieCard movie={movieMock} />);
 
+      const expectedFeedbackTest = "Success! You have deleted a movie";
+
       const deleteButton = screen.getByRole("button", {
         name: expectedButtonName,
       });
 
       await userEvent.click(deleteButton);
 
-      expect(
-        screen.getByText("Success! You have deleted a movie"),
-      ).toBeInTheDocument();
+      const feedbackText = await screen.findByText(expectedFeedbackTest);
+
+      expect(feedbackText).toBeInTheDocument();
     });
 
-    test("Then the promise is rejected then it should show a feedback message with 'Success! You have deleted a movie'", async () => {
+    test("Then the promise is rejected then it should show a feedback message with 'Error! Failed to delete a movie'", async () => {
       server.use(...errorHandlers);
+
+      const expectedFeedbackText = "Error! Failed to delete a movie";
 
       customRenderWithBrowser(<MovieCard movie={movieMock} />);
 
@@ -89,10 +97,10 @@ describe("Given a MovieCard component", () => {
 
       await userEvent.click(deleteButton);
 
+      const toast = await screen.findByText(expectedFeedbackText);
+
       await waitFor(() => {
-        expect(
-          screen.getByText("Error! Failed to delete a movie"),
-        ).toBeInTheDocument();
+        expect(toast).toBeInTheDocument();
       });
     });
   });

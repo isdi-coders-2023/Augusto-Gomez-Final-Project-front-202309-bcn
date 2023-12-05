@@ -17,7 +17,7 @@ const Navigation = (): React.ReactElement => (
         </NavLink>
       </li>
       <li className="navigation-bar__link-container">
-        <NavLink className="navigation-bar__link" to="/">
+        <NavLink className="navigation-bar__link" to="/add-movie">
           <span className="navigation-bar__text">Add movie</span>
           <img
             src="images/addIcon.svg"
