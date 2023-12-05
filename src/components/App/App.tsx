@@ -1,12 +1,13 @@
 import { Navigate, Route, Routes } from "react-router-dom";
-import Container from "../../styles/Container/Container";
 import Header from "../Header/Header";
 import ListPage from "../../pages/ListPage/ListPage";
 import { useAppSelector } from "../../store/hooks";
 import Loading from "../Loading/Loading";
 import ErrorPage from "../../pages/ErrorPage/ErrorPage";
 import "react-toastify/dist/ReactToastify.min.css";
-import StyledToast from "../../styles/Toast/ToastStyled";
+import StyledToast from "../../styles/shared/ToastStyled";
+import AddMoviePage from "../../pages/AddMoviePage/AddMoviePage";
+import ContainerStyled from "../../styles/shared/ContainerStyled";
 
 const App = (): React.ReactElement => {
   const uiState = useAppSelector((state) => state.uiState);
@@ -16,13 +17,14 @@ const App = (): React.ReactElement => {
       {uiState.isLoading && <Loading />}
       <StyledToast />
       <Header />
-      <Container>
+      <ContainerStyled>
         <Routes>
           <Route path="/" element={<Navigate to="/home" />} />
           <Route path="/home" element={<ListPage />} />
           <Route path="/error-page" element={<ErrorPage />} />
+          <Route path="/add-movie" element={<AddMoviePage />} />
         </Routes>
-      </Container>
+      </ContainerStyled>
     </>
   );
 };

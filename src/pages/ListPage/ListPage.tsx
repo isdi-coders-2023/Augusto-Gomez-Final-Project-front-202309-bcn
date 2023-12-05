@@ -4,6 +4,7 @@ import { useAppDispatch } from "../../store/hooks";
 import ListPageStyled from "./ListPageStyled";
 import { loadMoviesActionCreator } from "../../store/features/movies/moviesSlice";
 import useMoviesApi from "../../hooks/useMoviesApi";
+import TitleStyled from "../../styles/shared/TitleStyled";
 
 const ListPage = (): React.ReactElement => {
   const dispatch = useAppDispatch();
@@ -20,7 +21,7 @@ const ListPage = (): React.ReactElement => {
 
   return (
     <ListPageStyled className="list-page">
-      <h1 className="list-page__title">Our movies</h1>
+      <TitleStyled className="title">Our movies</TitleStyled>
       <MovieList />
     </ListPageStyled>
   );
