@@ -30,6 +30,12 @@ const ButtonStyled = styled.button`
       font-family: inherit;
       width: inherit;
     }
+
+    &--form {
+      background-color: ${({ theme }) => theme.colors.buttonBackground};
+      align-self: center;
+      margin: 30px;
+    }
   }
 `;
 
