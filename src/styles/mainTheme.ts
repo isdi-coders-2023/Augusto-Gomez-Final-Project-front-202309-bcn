@@ -5,11 +5,13 @@ import "@fontsource/inria-sans";
 
 const mainTheme: DefaultTheme = {
   colors: {
-    background: "#EDF5F4",
+    background: "#edf5f4",
+    formBackground: "#dCe8e7",
     light: "#fff",
     dark: "#000",
     modify: "#37b42d",
     delete: "#ff6565",
+    buttonBackground: "#f5f5f5",
   },
   typography: {
     main: "'Outfit Variable', sans-serif",

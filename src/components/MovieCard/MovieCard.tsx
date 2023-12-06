@@ -39,7 +39,7 @@ const MovieCard = ({
       <span className="movie-card__release-date">
         {releaseDate.slice(0, 4)}
       </span>
-      <span className="movie-card__genre">{genre.join(" - ")}</span>
+      <span className="movie-card__genre">{genre}</span>
       <Button
         text="Delete"
         type="button"

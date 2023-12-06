@@ -3,11 +3,13 @@ export interface Movie {
   name: string;
   director: string;
   writer: string;
-  stars: string[];
+  stars: string;
   releaseDate: string;
-  genre: string[];
+  genre: string;
   description: string;
   imageUrl: string;
   score: string;
   isSeen: false;
 }
+
+export type MovieWithoutId = Omit<Movie, "_id">;
