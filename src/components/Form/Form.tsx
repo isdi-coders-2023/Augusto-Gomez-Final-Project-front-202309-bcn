@@ -2,8 +2,17 @@ import { useEffect, useState } from "react";
 import FormStyled from "./FormStyled";
 import Button from "../Button/Button";
 import { MovieWithoutId } from "../../store/features/movies/types";
+import { useDispatch } from "react-redux";
+import useMoviesApi from "../../hooks/useMoviesApi";
+import { addMovieActionCreator } from "../../store/features/movies/moviesSlice";
+import { useNavigate } from "react-router-dom";
 
 const Form = (): React.ReactElement => {
+  const dispatch = useDispatch();
+
+  const navigate = useNavigate();
+
+  const { addMovie } = useMoviesApi();
   const showRangeValue = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = document.querySelector("#value")!;
 
@@ -46,6 +55,13 @@ const Form = (): React.ReactElement => {
 
   const onFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    const movieFromApi = await addMovie(newMovie);
+    if (movieFromApi) {
+      dispatch(addMovieActionCreator(movieFromApi.movie));
+    }
+
+    navigate("/");
   };
 
   return (

@@ -17,7 +17,7 @@ const MovieCard = ({
   const { deleteMovieFromApi } = useMoviesApi();
 
   const deleteMovie = async (id: string): Promise<void> => {
-    await deleteMovieFromApi(import.meta.env.VITE_API_URL, id);
+    await deleteMovieFromApi(id);
     dispatch(deleteMovieActionCreator(id));
   };
 

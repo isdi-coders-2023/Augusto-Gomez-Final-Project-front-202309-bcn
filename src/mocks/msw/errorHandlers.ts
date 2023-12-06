@@ -7,4 +7,5 @@ export const errorHandlers = [
   http.delete(`${apiURL}/movies/65637a12d4b93a3787b660f7`, () =>
     HttpResponse.error(),
   ),
+  http.post(`${apiURL}/movies/create`, () => HttpResponse.error()),
 ];

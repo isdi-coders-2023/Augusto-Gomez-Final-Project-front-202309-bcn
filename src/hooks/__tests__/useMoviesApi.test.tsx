@@ -16,7 +16,7 @@ describe("Given a useMoviesApi custom hook", () => {
         },
       } = renderHook(() => useMoviesApi(), { wrapper: providerWrapper });
 
-      const expectedMovies = await getMovies(import.meta.env.VITE_API_URL);
+      const expectedMovies = await getMovies();
 
       expect(expectedMovies).toStrictEqual(moviesMock);
     });
@@ -38,7 +38,7 @@ describe("Given a useMoviesApi custom hook", () => {
         },
       } = renderHook(() => useMoviesApi(), { wrapper: providerWrapper });
 
-      await getMovies(import.meta.env.VITE_API_URL);
+      await getMovies();
 
       await waitFor(() => {
         const image = screen.getByAltText("Cut cinema reel drawing");
