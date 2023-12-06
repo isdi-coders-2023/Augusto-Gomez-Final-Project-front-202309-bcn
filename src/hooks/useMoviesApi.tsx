@@ -14,7 +14,7 @@ import { setStyle } from "../utils/toastifyFunctions";
 export interface UseMoviesApiStructure {
   getMovies: () => Promise<MovieStructure | void>;
   deleteMovieFromApi: (id: string) => Promise<Record<string, never> | void>;
-  addMovie: (movie: MovieWithoutId) => Promise<Movie>;
+  addMovie: (movie: MovieWithoutId) => Promise<{ movie: Movie } | void>;
 }
 
 axios.defaults.baseURL = import.meta.env.VITE_API_URL;
@@ -73,17 +73,31 @@ const useMoviesApi = (): UseMoviesApiStructure => {
   );
 
   const addMovie = useCallback(
-    async (movie: MovieWithoutId): Promise<Movie> => {
+    async (movie: MovieWithoutId): Promise<{ movie: Movie } | void> => {
       dispatch(showLoadingActionCreator());
 
-      const { data } = await axios.post<{ movie: Movie }>(
-        "/movies/create",
-        movie,
-      );
+      try {
+        const { data } = await axios.post<{ movie: Movie }>(
+          "/movies/create",
+          movie,
+        );
 
-      dispatch(hideLoadingActionCreator());
+        dispatch(hideLoadingActionCreator());
 
-      return data.movie;
+        toast.success(
+          "Sucess! You have added your own movie",
+          setStyle("#55b938", "#ccEAc4"),
+        );
+
+        return data;
+      } catch {
+        dispatch(hideLoadingActionCreator());
+
+        toast.error(
+          "Error! Failed to add movie",
+          setStyle("#d65745", "#F3CDC8"),
+        );
+      }
     },
     [dispatch],
   );
