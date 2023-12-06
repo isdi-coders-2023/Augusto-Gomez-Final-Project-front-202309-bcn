@@ -5,9 +5,9 @@ const movieMock: Movie = {
   name: "Arrival",
   director: "Denis Villeneuve",
   writer: "Eric Heisserer",
-  stars: ["Amy Adams", "Jeremy Renner"],
+  stars: "Amy Adams, Jeremy Renner",
   releaseDate: "2016-11-11",
-  genre: ["Drama", "Mystery", "Sci-Fi"],
+  genre: "Drama, Mystery, Sci-Fi",
   description:
     "A linguist is recruited to help communicate with extraterrestrial beings that have landed on Earth, leading to a global crisis.",
   imageUrl: "https://i.ibb.co/hmPbPy9/arrival.webp",
