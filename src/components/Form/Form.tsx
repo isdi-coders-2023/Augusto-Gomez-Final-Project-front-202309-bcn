@@ -5,9 +5,12 @@ import { MovieWithoutId } from "../../store/features/movies/types";
 import { useDispatch } from "react-redux";
 import useMoviesApi from "../../hooks/useMoviesApi";
 import { addMovieActionCreator } from "../../store/features/movies/moviesSlice";
+import { useNavigate } from "react-router-dom";
 
 const Form = (): React.ReactElement => {
   const dispatch = useDispatch();
+
+  const navigate = useNavigate();
 
   const { addMovie } = useMoviesApi();
   const showRangeValue = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -54,8 +57,11 @@ const Form = (): React.ReactElement => {
     event.preventDefault();
 
     const movieFromApi = await addMovie(newMovie);
+    if (movieFromApi) {
+      dispatch(addMovieActionCreator(movieFromApi.movie));
+    }
 
-    dispatch(addMovieActionCreator(movieFromApi));
+    navigate("/");
   };
 
   return (
