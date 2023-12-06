@@ -15,10 +15,7 @@ describe("Given a useMoviesApi custom hook", () => {
     test("Then it should delete the movie Arrival from the API", async () => {
       const expectedEmptyObject = {};
 
-      const response = await deleteMovieFromApi(
-        import.meta.env.VITE_API_URL,
-        expectedMovieId,
-      );
+      const response = await deleteMovieFromApi(expectedMovieId);
 
       expect(response).toStrictEqual(expectedEmptyObject);
     });
