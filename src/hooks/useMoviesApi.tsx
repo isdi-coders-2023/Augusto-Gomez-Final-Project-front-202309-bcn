@@ -81,10 +81,13 @@ const useMoviesApi = (): UseMoviesApiStructure => {
         movie,
       );
 
+      dispatch(hideLoadingActionCreator());
+
       return data.movie;
     },
     [dispatch],
   );
+
   return { getMovies, deleteMovieFromApi, addMovie };
 };
 
