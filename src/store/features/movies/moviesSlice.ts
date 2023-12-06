@@ -25,6 +25,14 @@ const moviesSlice = createSlice({
         (movie) => movie._id !== action.payload,
       ),
     }),
+
+    addMovie: (
+      currentState: MovieStructure,
+      action: PayloadAction<Movie>,
+    ): MovieStructure => ({
+      ...currentState,
+      movies: [...currentState.movies, action.payload],
+    }),
   },
 });
 
@@ -32,6 +40,7 @@ export const {
   actions: {
     loadMovies: loadMoviesActionCreator,
     deleteMovie: deleteMovieActionCreator,
+    addMovie: addMovieActionCreator,
   },
   reducer: moviesReducer,
 } = moviesSlice;
