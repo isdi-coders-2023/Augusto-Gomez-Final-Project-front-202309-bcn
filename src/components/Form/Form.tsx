@@ -9,10 +9,9 @@ import { useNavigate } from "react-router-dom";
 
 const Form = (): React.ReactElement => {
   const dispatch = useDispatch();
-
   const navigate = useNavigate();
-
   const { addMovie } = useMoviesApi();
+
   const showRangeValue = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = document.querySelector("#value")!;
 
@@ -56,12 +55,13 @@ const Form = (): React.ReactElement => {
   const onFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const movieFromApi = await addMovie(newMovie);
-    if (movieFromApi) {
-      dispatch(addMovieActionCreator(movieFromApi.movie));
-    }
+    const movie = await addMovie(newMovie);
 
-    navigate("/");
+    if (movie) {
+      dispatch(addMovieActionCreator(movie));
+
+      navigate("/home");
+    }
   };
 
   return (
@@ -161,7 +161,7 @@ const Form = (): React.ReactElement => {
             max={5}
             step={0.1}
             onChangeCapture={showRangeValue}
-          />{" "}
+          />
         </label>
         <label htmlFor="isSeen" className="add-movie-form__label">
           {" "}

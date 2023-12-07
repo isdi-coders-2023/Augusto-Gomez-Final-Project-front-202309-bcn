@@ -5,15 +5,12 @@ const LoadingStyled = styled.div`
   width: 100%;
   height: 100%;
   position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
   .loading {
-    &__container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-top: 300px;
-    }
-
     &__text {
       font-size: 40px;
       color: ${({ theme }) => theme.colors.light};
