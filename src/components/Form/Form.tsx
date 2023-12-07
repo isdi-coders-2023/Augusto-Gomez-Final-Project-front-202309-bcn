@@ -9,10 +9,9 @@ import { useNavigate } from "react-router-dom";
 
 const Form = (): React.ReactElement => {
   const dispatch = useDispatch();
-
   const navigate = useNavigate();
-
   const { addMovie } = useMoviesApi();
+
   const showRangeValue = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = document.querySelector("#value")!;
 
@@ -56,12 +55,13 @@ const Form = (): React.ReactElement => {
   const onFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const movieFromApi = await addMovie(newMovie);
-    if (movieFromApi) {
-      dispatch(addMovieActionCreator(movieFromApi.movie));
-    }
+    const movie = await addMovie(newMovie);
 
-    navigate("/");
+    if (movie) {
+      dispatch(addMovieActionCreator(movie));
+
+      navigate("/home");
+    }
   };
 
   return (
@@ -71,7 +71,6 @@ const Form = (): React.ReactElement => {
       onSubmit={onFormSubmit}
     >
       <label htmlFor="name" className="add-movie-form__label">
-        {" "}
         Name
         <input
           type="text"
@@ -82,7 +81,6 @@ const Form = (): React.ReactElement => {
         />
       </label>
       <label htmlFor="director" className="add-movie-form__label">
-        {" "}
         Director
         <input
           type="text"
@@ -93,7 +91,6 @@ const Form = (): React.ReactElement => {
         />
       </label>
       <label htmlFor="writer" className="add-movie-form__label">
-        {" "}
         Writer
         <input
           type="text"
@@ -104,7 +101,6 @@ const Form = (): React.ReactElement => {
         />
       </label>
       <label htmlFor="stars" className="add-movie-form__label">
-        {" "}
         Stars
         <input
           type="text"
@@ -115,7 +111,6 @@ const Form = (): React.ReactElement => {
         />
       </label>
       <label htmlFor="releaseDate" className="add-movie-form__label">
-        {" "}
         Release date
         <input
           type="date"
@@ -126,7 +121,6 @@ const Form = (): React.ReactElement => {
         />
       </label>
       <label htmlFor="genre" className="add-movie-form__label">
-        {" "}
         Genre
         <input
           type="text"
@@ -137,7 +131,6 @@ const Form = (): React.ReactElement => {
         />
       </label>
       <label htmlFor="imageUrl" className="add-movie-form__label">
-        {" "}
         Image Url
         <input
           type="url"
@@ -149,7 +142,6 @@ const Form = (): React.ReactElement => {
       </label>
       <div className="score">
         <label htmlFor="score" className="add-movie-form__label score__label">
-          {" "}
           Score <output id="value" className="score__value" />
           <input
             type="range"
@@ -161,10 +153,9 @@ const Form = (): React.ReactElement => {
             max={5}
             step={0.1}
             onChangeCapture={showRangeValue}
-          />{" "}
+          />
         </label>
         <label htmlFor="isSeen" className="add-movie-form__label">
-          {" "}
           Seen
           <input
             type="checkbox"
@@ -175,7 +166,6 @@ const Form = (): React.ReactElement => {
         </label>
       </div>
       <label htmlFor="description" className="add-movie-form__label">
-        {" "}
         Description
         <textarea
           className="add-movie-form__control"
