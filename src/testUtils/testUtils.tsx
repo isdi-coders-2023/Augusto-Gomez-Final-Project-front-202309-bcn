@@ -35,9 +35,8 @@ export const customRender = (children: React.ReactElement) => {
   );
 };
 
+export const mockStore = getMockStore();
 export const customRenderWithBrowser = (children: React.ReactElement) => {
-  const mockStore = getMockStore();
-
   render(
     <ThemeProvider theme={mainTheme}>
       <BrowserRouter>

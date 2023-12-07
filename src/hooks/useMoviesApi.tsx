@@ -14,12 +14,12 @@ import { setStyle } from "../utils/toastifyFunctions";
 export interface UseMoviesApiStructure {
   getMovies: () => Promise<MovieStructure | void>;
   deleteMovieFromApi: (id: string) => Promise<Record<string, never> | void>;
-  addMovie: (movie: MovieWithoutId) => Promise<{ movie: Movie } | void>;
+  addMovie: (movie: MovieWithoutId) => Promise<{ movie: Movie } | undefined>;
 }
 
 axios.defaults.baseURL = import.meta.env.VITE_API_URL;
 
-const useMoviesApi = (): UseMoviesApiStructure => {
+const useMoviesApi = () => {
   const dispatch = useAppDispatch();
 
   const navigate = useNavigate();
@@ -73,15 +73,13 @@ const useMoviesApi = (): UseMoviesApiStructure => {
   );
 
   const addMovie = useCallback(
-    async (movie: MovieWithoutId): Promise<{ movie: Movie } | void> => {
+    async (newMovie: MovieWithoutId): Promise<Movie | undefined> => {
       dispatch(showLoadingActionCreator());
 
       try {
-        const { data } = await axios.post<{ movie: Movie }>(
-          "/movies/create",
-          movie,
-        );
-
+        const {
+          data: { movie },
+        } = await axios.post<{ movie: Movie }>("/movies/create", newMovie);
         dispatch(hideLoadingActionCreator());
 
         toast.success(
@@ -89,7 +87,7 @@ const useMoviesApi = (): UseMoviesApiStructure => {
           setStyle("#55b938", "#ccEAc4"),
         );
 
-        return data;
+        return movie;
       } catch {
         dispatch(hideLoadingActionCreator());
 

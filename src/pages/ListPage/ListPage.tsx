@@ -13,6 +13,7 @@ const ListPage = (): React.ReactElement => {
   useEffect(() => {
     (async () => {
       const movies = await getMovies();
+
       if (movies) {
         dispatch(loadMoviesActionCreator(movies.movies));
       }

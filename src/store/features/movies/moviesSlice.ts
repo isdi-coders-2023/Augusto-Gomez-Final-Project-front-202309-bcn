@@ -15,7 +15,6 @@ const moviesSlice = createSlice({
       currentState: MovieStructure,
       action: PayloadAction<Movie[]>,
     ): MovieStructure => ({ ...currentState, movies: action.payload }),
-
     deleteMovie: (
       currentState: MovieStructure,
       action: PayloadAction<string>,
@@ -25,7 +24,6 @@ const moviesSlice = createSlice({
         (movie) => movie._id !== action.payload,
       ),
     }),
-
     addMovie: (
       currentState: MovieStructure,
       action: PayloadAction<Movie>,
