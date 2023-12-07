@@ -18,7 +18,7 @@ describe("Given a useMoviesApi custom hook", () => {
 
       const expectedMovies = await getMovies();
 
-      expect(expectedMovies).toStrictEqual(moviesMock);
+      expect(expectedMovies?.movies).toStrictEqual(moviesMock);
     });
   });
 

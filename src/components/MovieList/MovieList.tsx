@@ -3,11 +3,11 @@ import MovieListStyled from "./MovieListStyled";
 import MovieCard from "../MovieCard/MovieCard";
 
 const MovieList = () => {
-  const moviesState = useAppSelector((state) => state.moviesState);
+  const movies = useAppSelector((state) => state.moviesState.movies);
 
   return (
     <MovieListStyled className="movie-list">
-      {moviesState.movies.map((movie) => (
+      {movies.map((movie) => (
         <li key={movie._id} className="movie-list__item">
           <MovieCard movie={movie} />
         </li>

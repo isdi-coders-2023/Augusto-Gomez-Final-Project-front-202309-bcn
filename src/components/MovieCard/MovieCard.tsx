@@ -16,9 +16,10 @@ const MovieCard = ({
   const dispatch = useAppDispatch();
   const { deleteMovieFromApi } = useMoviesApi();
 
-  const deleteMovie = async (id: string): Promise<void> => {
-    await deleteMovieFromApi(id);
-    dispatch(deleteMovieActionCreator(id));
+  const deleteMovie = async (): Promise<void> => {
+    await deleteMovieFromApi(_id);
+
+    dispatch(deleteMovieActionCreator(_id));
   };
 
   return (
@@ -43,9 +44,7 @@ const MovieCard = ({
       <Button
         text="Delete"
         type="button"
-        actionOnClick={() => {
-          deleteMovie(_id);
-        }}
+        actionOnClick={deleteMovie}
         modifier="button--delete"
       />
     </MovieCardStyled>
