@@ -4,6 +4,7 @@ import App from "./App";
 import { ThemeProvider } from "styled-components";
 import mainTheme from "../../styles/mainTheme";
 import { customRender } from "../../testUtils/testUtils";
+import userEvent from "@testing-library/user-event";
 
 describe("Given an App component", () => {
   describe("When it is rendered on screen on the HomePage", () => {
@@ -53,6 +54,31 @@ describe("Given an App component", () => {
       const image = screen.getByAltText(expectedAlternativeText);
 
       expect(image).toBeInTheDocument();
+    });
+  });
+
+  describe("When it is rendered and you navigate to the AddPage", () => {
+    test("Then it should show the AddPage with 'Add your own movie' message", async () => {
+      const addMoviePageLinkText = "Add movie Add movie navigation icon";
+      const addMoviePageHeadingText = "Add your own movie";
+
+      customRender(
+        <MemoryRouter>
+          <App />
+        </MemoryRouter>,
+      );
+
+      const addMoviePageLink = screen.getByRole("link", {
+        name: addMoviePageLinkText,
+      });
+
+      await userEvent.click(addMoviePageLink);
+
+      const addMoviePageHeading = await screen.findByRole("heading", {
+        name: addMoviePageHeadingText,
+      });
+
+      expect(addMoviePageHeading).toBeInTheDocument();
     });
   });
 });
