@@ -10,11 +10,11 @@ import AddMoviePage from "../../pages/AddMoviePage/AddMoviePage";
 import ContainerStyled from "../../styles/shared/ContainerStyled";
 
 const App = (): React.ReactElement => {
-  const uiState = useAppSelector((state) => state.uiState);
+  const isLoading = useAppSelector((state) => state.uiState.isLoading);
 
   return (
     <>
-      {uiState.isLoading && <Loading />}
+      {isLoading && <Loading />}
       <StyledToast />
       <Header />
       <ContainerStyled>
