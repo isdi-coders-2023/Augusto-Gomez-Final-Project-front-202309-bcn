@@ -50,4 +50,45 @@ describe("Given a Form component", () => {
       expect(checkedInput).toBeChecked();
     });
   });
+
+  describe("When it is rendered on screen and the user fills all form fields", () => {
+    test("Then the 'Add' button should be enabled", async () => {
+      const buttonText = "Add";
+      const testText = "https://prueba.com";
+      const fieldNames = [
+        "Name",
+        "Director",
+        "Writer",
+        "Stars",
+        "Genre",
+        "Image Url",
+        "Description",
+      ];
+
+      const releaseDateLabel = "Release date";
+
+      customRenderWithBrowser(<Form />);
+
+      const addButton = screen.getByRole("button", { name: buttonText });
+
+      const releaseDateField = screen.getByLabelText(releaseDateLabel);
+
+      const scoreField = screen.getByRole("slider", { name: "Score" });
+
+      for (const text of fieldNames) {
+        await userEvent.type(
+          screen.getByRole("textbox", { name: text }),
+          testText,
+        );
+      }
+
+      await fireEvent.change(releaseDateField, {
+        target: { value: "2023-12-19" },
+      });
+
+      await fireEvent.change(scoreField, { target: { value: "4.0" } });
+
+      expect(addButton).not.toBeDisabled();
+    });
+  });
 });
