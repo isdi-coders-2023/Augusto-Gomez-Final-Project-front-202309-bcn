@@ -3,11 +3,9 @@ import MovieCardStyled from "./MovieCardStyled";
 import getScoreStars from "../../utils/cardFunctions";
 import Button from "../Button/Button";
 import { useAppDispatch } from "../../store/hooks";
-import {
-  deleteMovieActionCreator,
-  loadSelectedMovieActionCreator,
-} from "../../store/features/movies/moviesSlice";
+import { deleteMovieActionCreator } from "../../store/features/movies/moviesSlice";
 import useMoviesApi from "../../hooks/useMoviesApi";
+import { useNavigate } from "react-router-dom";
 
 interface MovieCardProp {
   movie: Movie;
@@ -15,21 +13,15 @@ interface MovieCardProp {
 
 const MovieCard = ({
   movie: { genre, name, imageUrl, releaseDate, score, _id },
-  movie,
 }: MovieCardProp) => {
   const dispatch = useAppDispatch();
-  const { deleteMovieFromApi, loadSelectedMovie } = useMoviesApi();
+  const { deleteMovieFromApi } = useMoviesApi();
+  const navigate = useNavigate();
 
   const deleteMovie = async (): Promise<void> => {
     await deleteMovieFromApi(_id);
 
     dispatch(deleteMovieActionCreator(_id));
-  };
-
-  const getSelectedMovie = async (): Promise<void> => {
-    await loadSelectedMovie(_id);
-
-    dispatch(loadSelectedMovieActionCreator(movie));
   };
 
   return (
@@ -60,7 +52,7 @@ const MovieCard = ({
       <Button
         text="Details"
         type="button"
-        actionOnClick={getSelectedMovie}
+        actionOnClick={() => navigate(`/movies/${_id}`)}
         modifier="button--details"
       />
     </MovieCardStyled>
