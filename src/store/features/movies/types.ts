@@ -12,4 +12,8 @@ export interface Movie {
   isSeen: false;
 }
 
+export interface MovieList {
+  movies: Movie[];
+}
+
 export type MovieWithoutId = Omit<Movie, "_id">;
