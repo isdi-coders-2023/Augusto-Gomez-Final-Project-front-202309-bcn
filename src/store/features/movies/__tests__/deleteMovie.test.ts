@@ -4,11 +4,15 @@ import {
   deleteMovieActionCreator,
   moviesReducer,
 } from "../moviesSlice";
+import { Movie } from "../types";
 
 describe("Given a movieSlice deleteMovie reducer", () => {
   describe("When it receives a list of movies and a correct id from Arrival", () => {
     test("Then it should return the list of movies with Arrival removed", () => {
-      const initialState: MovieStructure = { movies: moviesMock };
+      const initialState: MovieStructure = {
+        movies: moviesMock,
+        selectedMovie: {} as Movie,
+      };
       const expectedDeletedName = "Arrival";
 
       const actualMoviesState = moviesReducer(

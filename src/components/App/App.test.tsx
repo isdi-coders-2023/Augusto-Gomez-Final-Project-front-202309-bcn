@@ -1,10 +1,12 @@
-import { fireEvent, screen } from "@testing-library/react";
+import { fireEvent, screen, waitFor } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import App from "./App";
 import { ThemeProvider } from "styled-components";
 import mainTheme from "../../styles/mainTheme";
 import { customRender } from "../../testUtils/testUtils";
 import userEvent from "@testing-library/user-event";
+import { server } from "../../mocks/msw/node";
+import { errorHandlers } from "../../mocks/msw/errorHandlers";
 
 describe("Given an App component", () => {
   describe("When it is rendered on screen on the HomePage", () => {
@@ -130,6 +132,30 @@ describe("Given an App component", () => {
       });
 
       expect(listPageHeading).toBeInTheDocument();
+    });
+  });
+
+  describe("When it is rendered and the user clicks on the MovieCard's detail button and the request for the selected card fails", () => {
+    test("Then it should show a feedback component with a 'Error! Failed to select a movie' message", async () => {
+      server.use(errorHandlers[3]);
+
+      const buttonText = "Details";
+      const errorFeedbackMessage = "Error! Failed to select a movie";
+
+      customRender(
+        <MemoryRouter>
+          <App />
+        </MemoryRouter>,
+      );
+
+      const button = screen.getAllByRole("button", { name: buttonText });
+
+      await userEvent.click(button[0]);
+
+      const expectedErrorFeedback =
+        await screen.findByText(errorFeedbackMessage);
+
+      await waitFor(() => expect(expectedErrorFeedback).toBeInTheDocument());
     });
   });
 });

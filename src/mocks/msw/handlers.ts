@@ -1,6 +1,7 @@
 import { http, HttpResponse } from "msw";
 import { moviesMock } from "../moviesMocks";
 import extendedMovieMocks from "../extendedMovieMocks";
+import movieMock from "../movieMock";
 
 const apiURL = import.meta.env.VITE_API_URL;
 
@@ -13,5 +14,9 @@ export const handlers = [
 
   http.post(`${apiURL}/movies/create`, () =>
     HttpResponse.json({ movie: extendedMovieMocks[2] }),
+  ),
+
+  http.get(`${apiURL}/movies/${movieMock._id}`, () =>
+    HttpResponse.json({ movie: movieMock }),
   ),
 ];

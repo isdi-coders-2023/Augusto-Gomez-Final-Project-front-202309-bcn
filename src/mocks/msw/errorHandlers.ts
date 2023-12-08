@@ -1,4 +1,5 @@
 import { http, HttpResponse } from "msw";
+import movieMock from "../movieMock";
 
 const apiURL = import.meta.env.VITE_API_URL;
 
@@ -8,4 +9,6 @@ export const errorHandlers = [
     HttpResponse.error(),
   ),
   http.post(`${apiURL}/movies/create`, () => HttpResponse.error()),
+
+  http.get(`${apiURL}/movies/${movieMock._id}`, () => HttpResponse.error()),
 ];
