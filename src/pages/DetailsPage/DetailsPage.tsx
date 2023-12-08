@@ -4,15 +4,26 @@ import useMoviesApi from "../../hooks/useMoviesApi";
 import { useParams } from "react-router-dom";
 import { loadSelectedMovieActionCreator } from "../../store/features/movies/moviesSlice";
 import { useEffect } from "react";
+import DetailsPageStyled from "./DetailsPageStyled";
 
 const DetailsPage = (): React.ReactElement => {
   const { loadSelectedMovie } = useMoviesApi();
   const dispatch = useAppDispatch();
   const { movieId } = useParams();
 
-  const selectedMovie = useAppSelector(
-    (state) => state.moviesState.selectedMovie,
-  );
+  const {
+    selectedMovie: {
+      description,
+      director,
+      genre,
+      imageUrl,
+      name,
+      releaseDate,
+      score,
+      stars,
+      writer,
+    },
+  } = useAppSelector((state) => state.moviesState);
 
   useEffect(() => {
     (async () => {
@@ -22,38 +33,55 @@ const DetailsPage = (): React.ReactElement => {
   }, [dispatch, loadSelectedMovie, movieId]);
 
   return (
-    <section className="details-page">
-      <article className="movie-details-card">
-        <img
-          src={`${selectedMovie.imageUrl}`}
-          alt={`Cover of ${selectedMovie.name}`}
-          className="movie-details-card__image"
-          width="209"
-          height="283"
-        />
-        <div className="movie-details-card__title-container">
-          <h2 className="title-container__title">{selectedMovie.name}</h2>
-          <span className="title-container__score">{selectedMovie.score}</span>
-        </div>
-        <span className="movie-details-card__director">
-          {selectedMovie.director}
-        </span>
-        <span className="movie-details-card__writer">
-          {selectedMovie.writer}
-        </span>
-        <span className="movie-details-card__stars">{selectedMovie.stars}</span>
-        <span className="movie-details-card__genre">{selectedMovie.genre}</span>
-        <span className="movie-card-details__description">
-          {selectedMovie.genre}
-        </span>
-        <span className="movie-details-card__release-date">
-          {selectedMovie.releaseDate}
-        </span>
-        <div className="movie-details-card__button-container">
-          <Button text="Delete" type="button" />
-        </div>
-      </article>
-    </section>
+    <DetailsPageStyled>
+      <div className="card-background">
+        <article className="movie-details-card">
+          <img
+            src={`${imageUrl}`}
+            alt={`Cover of ${name}`}
+            className="movie-details-card__image"
+            width="209"
+            height="283"
+          />
+          <div className="movie-details-card__title-container">
+            <h2 className="title-container__title">{name}</h2>
+            <span className="title-container__score">{score}⭐</span>
+          </div>
+          <div className="movie-details-card__text-container">
+            <div className="movie-details-card__field">
+              <span className="movie-details-card__descriptor">Director:</span>
+              <span className="movie-details-card__director">{director}</span>
+            </div>
+            <div className="movie-details-card__field">
+              <span className="movie-details-card__descriptor">Writer:</span>
+              <span className="movie-details-card__writer">{writer}</span>
+            </div>
+            <div className="movie-details-card__field">
+              <span className="movie-details-card__descriptor">Stars:</span>
+              <span className="movie-details-card__stars">{stars}</span>
+            </div>
+            <div className="movie-details-card__field">
+              <span className="movie-details-card__descriptor">Genre</span>
+              <span className="movie-details-card__genre">{genre}</span>
+            </div>
+            <span className="movie-details-card__description">
+              {description}
+            </span>
+            <div className="movie-details-card__field release-date-field">
+              <span className="movie-details-card__descriptor">
+                Release date
+              </span>
+              <span className="movie-details-card__release-date">
+                {releaseDate}
+              </span>
+            </div>
+          </div>
+          <div className="movie-details-card__button-container">
+            <Button text="Delete" type="button" />
+          </div>
+        </article>
+      </div>
+    </DetailsPageStyled>
   );
 };
 
