@@ -1,7 +1,10 @@
 import axios from "axios";
-import { Movie, MovieWithoutId } from "../store/features/movies/types";
+import {
+  Movie,
+  MovieList,
+  MovieWithoutId,
+} from "../store/features/movies/types";
 import { useCallback } from "react";
-import { MovieStructure } from "../store/features/movies/moviesSlice";
 import { useAppDispatch } from "../store/hooks";
 import {
   hideLoadingActionCreator,
@@ -11,12 +14,6 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { setStyle } from "../utils/toastifyFunctions";
 
-export interface UseMoviesApiStructure {
-  getMovies: () => Promise<MovieStructure | void>;
-  deleteMovieFromApi: (id: string) => Promise<Record<string, never> | void>;
-  addMovie: (movie: MovieWithoutId) => Promise<{ movie: Movie } | undefined>;
-}
-
 axios.defaults.baseURL = import.meta.env.VITE_API_URL;
 
 const useMoviesApi = () => {
@@ -24,9 +21,7 @@ const useMoviesApi = () => {
 
   const navigate = useNavigate();
 
-  const getMovies = useCallback(async (): Promise<
-    MovieStructure | undefined
-  > => {
+  const getMovies = useCallback(async (): Promise<MovieList | undefined> => {
     dispatch(showLoadingActionCreator());
 
     try {
@@ -100,7 +95,29 @@ const useMoviesApi = () => {
     [dispatch],
   );
 
-  return { getMovies, deleteMovieFromApi, addMovie };
+  const loadSelectedMovie = useCallback(
+    async (id: string): Promise<Movie | void> => {
+      try {
+        dispatch(showLoadingActionCreator());
+
+        const {
+          data: { movie },
+        } = await axios.get<{ movie: Movie }>(`/movies/${id}`);
+
+        dispatch(hideLoadingActionCreator());
+
+        return movie;
+      } catch {
+        toast.error(
+          "Error! Failed to select a movie",
+          setStyle("#d65745", "#F3CDC8"),
+        );
+      }
+    },
+    [dispatch],
+  );
+
+  return { getMovies, deleteMovieFromApi, addMovie, loadSelectedMovie };
 };
 
 export default useMoviesApi;
