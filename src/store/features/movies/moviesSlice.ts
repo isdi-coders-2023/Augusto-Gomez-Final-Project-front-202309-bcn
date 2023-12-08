@@ -3,9 +3,13 @@ import { Movie } from "./types";
 
 export interface MovieStructure {
   movies: Movie[];
+  selectedMovie: Movie;
 }
 
-const initialMovieState: MovieStructure = { movies: [] };
+const initialMovieState: MovieStructure = {
+  movies: [],
+  selectedMovie: {} as Movie,
+};
 
 const moviesSlice = createSlice({
   name: "movies",
@@ -31,6 +35,10 @@ const moviesSlice = createSlice({
       ...currentState,
       movies: [...currentState.movies, action.payload],
     }),
+    loadSelectedmovie: (
+      currentState: MovieStructure,
+      action: PayloadAction<Movie>,
+    ): MovieStructure => ({ ...currentState, selectedMovie: action.payload }),
   },
 });
 
