@@ -8,7 +8,10 @@ import {
 describe("Given a uiReducer from a uiSlice", () => {
   describe("When it receives an initial state with true or false and a showLoadingActionCreator", () => {
     test("Then it should return the new state with true", () => {
-      const initialState: UiStructure = { isLoading: false };
+      const initialState: UiStructure = {
+        isLoading: false,
+        hasBackground: false,
+      };
 
       const actualUiState = uiReducer(initialState, showLoadingActionCreator());
 
@@ -18,7 +21,10 @@ describe("Given a uiReducer from a uiSlice", () => {
 
   describe("When it receives an initial state with true or false and a hideLoadingActionCreator", () => {
     test("Then it should return the new state with false", () => {
-      const initialState: UiStructure = { isLoading: true };
+      const initialState: UiStructure = {
+        isLoading: true,
+        hasBackground: false,
+      };
 
       const actualUiState = uiReducer(initialState, hideLoadingActionCreator());
 

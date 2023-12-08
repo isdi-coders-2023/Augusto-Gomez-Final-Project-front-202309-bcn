@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import { loadSelectedMovieActionCreator } from "../../store/features/movies/moviesSlice";
 import { useEffect } from "react";
 import DetailsPageStyled from "./DetailsPageStyled";
+import { showBackgroundActionCreator } from "../../store/features/UI/uiSlice";
 
 const DetailsPage = (): React.ReactElement => {
   const { loadSelectedMovie } = useMoviesApi();
@@ -29,6 +30,7 @@ const DetailsPage = (): React.ReactElement => {
     (async () => {
       const movie = await loadSelectedMovie(movieId!);
       dispatch(loadSelectedMovieActionCreator(movie!));
+      dispatch(showBackgroundActionCreator());
     })();
   }, [dispatch, loadSelectedMovie, movieId]);
 

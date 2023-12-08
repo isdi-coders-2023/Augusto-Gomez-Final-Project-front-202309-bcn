@@ -18,7 +18,7 @@ const getMockStore = () => {
     reducer: { moviesState: moviesReducer, uiState: uiReducer },
     preloadedState: {
       moviesState: { movies: moviesMock, selectedMovie: {} as Movie },
-      uiState: { isLoading: false },
+      uiState: { isLoading: false, hasBackground: false },
     },
   });
 
