@@ -11,12 +11,13 @@ import { uiReducer } from "../store/features/UI/uiSlice";
 import { PropsWithChildren } from "react";
 import { store } from "../store";
 import { ToastContainer } from "react-toastify";
+import { Movie } from "../store/features/movies/types";
 
 const getMockStore = () => {
   const mockStore = configureStore({
     reducer: { moviesState: moviesReducer, uiState: uiReducer },
     preloadedState: {
-      moviesState: { movies: moviesMock },
+      moviesState: { movies: moviesMock, selectedMovie: {} as Movie },
       uiState: { isLoading: false },
     },
   });
