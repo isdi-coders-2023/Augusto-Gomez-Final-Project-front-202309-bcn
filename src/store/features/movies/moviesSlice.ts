@@ -35,7 +35,7 @@ const moviesSlice = createSlice({
       ...currentState,
       movies: [...currentState.movies, action.payload],
     }),
-    loadSelectedmovie: (
+    loadSelectedMovie: (
       currentState: MovieStructure,
       action: PayloadAction<Movie>,
     ): MovieStructure => ({ ...currentState, selectedMovie: action.payload }),
@@ -47,6 +47,7 @@ export const {
     loadMovies: loadMoviesActionCreator,
     deleteMovie: deleteMovieActionCreator,
     addMovie: addMovieActionCreator,
+    loadSelectedMovie: loadSelectedMovieActionCreator,
   },
   reducer: moviesReducer,
 } = moviesSlice;
