@@ -26,7 +26,7 @@ const App = (): React.ReactElement => {
           <Route path="/home" element={<ListPage />} />
           <Route path="/error-page" element={<ErrorPage />} />
           <Route path="/add-movie" element={<AddMoviePage />} />
-          <Route path="/movies/:movieId" element={<DetailsPage />} />
+          <Route path="/:movieId" element={<DetailsPage />} />
         </Routes>
       </ContainerStyled>
     </>

@@ -1,9 +1,33 @@
+import { useNavigate, useParams } from "react-router-dom";
 import Button from "../../components/Button/Button";
-import { useAppSelector } from "../../store/hooks";
-
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import DetailsPageStyled from "./DetailsPageStyled";
+import { useEffect } from "react";
+import useMoviesApi from "../../hooks/useMoviesApi";
+import { showBackgroundActionCreator } from "../../store/features/UI/uiSlice";
+import { loadSelectedMovieActionCreator } from "../../store/features/movies/moviesSlice";
 
 const DetailsPage = (): React.ReactElement => {
+  const { loadSelectedMovie } = useMoviesApi();
+  const { movieId } = useParams();
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    (async () => {
+      const selectedMovie = await loadSelectedMovie(movieId!);
+
+      if (!selectedMovie) {
+        navigate("/error-page");
+        return;
+      }
+
+      dispatch(loadSelectedMovieActionCreator(selectedMovie!));
+
+      dispatch(showBackgroundActionCreator());
+    })();
+  }, [dispatch, loadSelectedMovie, movieId, navigate]);
+
   const {
     selectedMovie: {
       description,
