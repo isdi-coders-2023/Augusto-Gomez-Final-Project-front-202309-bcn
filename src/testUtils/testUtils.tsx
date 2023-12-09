@@ -13,11 +13,14 @@ import { store } from "../store";
 import { ToastContainer } from "react-toastify";
 import { Movie } from "../store/features/movies/types";
 
-const getMockStore = () => {
+const getMockStore = (initialMovieState?: Movie) => {
   const mockStore = configureStore({
     reducer: { moviesState: moviesReducer, uiState: uiReducer },
     preloadedState: {
-      moviesState: { movies: moviesMock, selectedMovie: {} as Movie },
+      moviesState: {
+        movies: moviesMock,
+        selectedMovie: initialMovieState ?? ({} as Movie),
+      },
       uiState: { isLoading: false, hasBackground: false },
     },
   });
@@ -36,8 +39,11 @@ export const customRender = (children: React.ReactElement) => {
   );
 };
 
-export const mockStore = getMockStore();
-export const customRenderWithBrowser = (children: React.ReactElement) => {
+export const customRenderWithBrowser = (
+  children: React.ReactElement,
+  initialSelectedMovieState?: Movie,
+) => {
+  const mockStore = getMockStore(initialSelectedMovieState);
   render(
     <ThemeProvider theme={mainTheme}>
       <BrowserRouter>

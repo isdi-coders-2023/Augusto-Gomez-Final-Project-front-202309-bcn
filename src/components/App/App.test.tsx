@@ -85,7 +85,7 @@ describe("Given an App component", () => {
   });
 
   describe("When it is rendered on the AddPage and you fill the form fields and click the submit button", () => {
-    test("Then you should navigate to the ListPage and see a 'Our movies' title on a heading", async () => {
+    test("Then you should navigate to the ListPage and see a 'Our movies' title on a heading and a 'Sucess! You have added your own movie' feedback message", async () => {
       const buttonText = "Add";
       const listPageHeadingText = "Our movies";
       const testText = "https://prueba.com";
@@ -131,7 +131,12 @@ describe("Given an App component", () => {
         name: listPageHeadingText,
       });
 
+      const feedbackMessage = await screen.getByText(
+        "Sucess! You have added your own movie",
+      );
+
       expect(listPageHeading).toBeInTheDocument();
+      expect(feedbackMessage).toBeInTheDocument();
     });
   });
 
