@@ -1,17 +1,9 @@
 import Button from "../../components/Button/Button";
-import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import useMoviesApi from "../../hooks/useMoviesApi";
-import { useParams } from "react-router-dom";
-import { loadSelectedMovieActionCreator } from "../../store/features/movies/moviesSlice";
-import { useEffect } from "react";
+import { useAppSelector } from "../../store/hooks";
+
 import DetailsPageStyled from "./DetailsPageStyled";
-import { showBackgroundActionCreator } from "../../store/features/UI/uiSlice";
 
 const DetailsPage = (): React.ReactElement => {
-  const { loadSelectedMovie } = useMoviesApi();
-  const dispatch = useAppDispatch();
-  const { movieId } = useParams();
-
   const {
     selectedMovie: {
       description,
@@ -25,14 +17,6 @@ const DetailsPage = (): React.ReactElement => {
       writer,
     },
   } = useAppSelector((state) => state.moviesState);
-
-  useEffect(() => {
-    (async () => {
-      const movie = await loadSelectedMovie(movieId!);
-      dispatch(loadSelectedMovieActionCreator(movie!));
-      dispatch(showBackgroundActionCreator());
-    })();
-  }, [dispatch, loadSelectedMovie, movieId]);
 
   return (
     <DetailsPageStyled>
