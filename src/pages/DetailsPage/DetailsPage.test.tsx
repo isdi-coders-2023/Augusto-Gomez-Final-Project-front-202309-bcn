@@ -3,6 +3,14 @@ import movieMock from "../../mocks/movieMock";
 import { customRenderWithBrowser } from "../../testUtils/testUtils";
 import DetailsPage from "./DetailsPage";
 
+vi.mock("react-router-dom", async () => {
+  const actual = await vi.importActual<object>("react-router-dom");
+  return {
+    ...actual,
+    useParams: vi.fn().mockReturnValue({ movieId: "65637a12d4b93a3787b660f7" }),
+  };
+});
+
 describe("Given a DetailsPage component", () => {
   describe("When it is rendered on screen", () => {
     test("Then it should show an image with an alternative text 'Cover of Arrival'", () => {

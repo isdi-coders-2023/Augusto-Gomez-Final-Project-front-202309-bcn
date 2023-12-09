@@ -7,7 +7,7 @@ const DetailsPageStyled = styled.section`
     position: relative;
     display: flex;
     flex-direction: column;
-    background-color: beige;
+    background-color: ${({ theme }) => theme.colors.light};
     align-items: center;
     border-radius: 10px;
     max-width: 280px;

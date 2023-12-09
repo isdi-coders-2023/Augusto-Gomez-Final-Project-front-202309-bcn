@@ -18,12 +18,12 @@ const DetailsPage = (): React.ReactElement => {
       const selectedMovie = await loadSelectedMovie(movieId!);
 
       if (!selectedMovie) {
-        navigate("/error-page");
+        navigate("/");
+
         return;
       }
 
       dispatch(loadSelectedMovieActionCreator(selectedMovie!));
-
       dispatch(showBackgroundActionCreator());
     })();
   }, [dispatch, loadSelectedMovie, movieId, navigate]);
