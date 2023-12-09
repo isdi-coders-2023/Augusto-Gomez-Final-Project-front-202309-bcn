@@ -8,13 +8,16 @@ import "react-toastify/dist/ReactToastify.min.css";
 import StyledToast from "../../styles/shared/ToastStyled";
 import AddMoviePage from "../../pages/AddMoviePage/AddMoviePage";
 import ContainerStyled from "../../styles/shared/ContainerStyled";
+import DetailsPage from "../../pages/DetailsPage/DetailsPage";
+import Background from "../Background/Background";
 
 const App = (): React.ReactElement => {
-  const isLoading = useAppSelector((state) => state.uiState.isLoading);
+  const { isLoading, hasBackground } = useAppSelector((state) => state.uiState);
 
   return (
     <>
       {isLoading && <Loading />}
+      {hasBackground && <Background />}
       <StyledToast />
       <Header />
       <ContainerStyled>
@@ -23,6 +26,7 @@ const App = (): React.ReactElement => {
           <Route path="/home" element={<ListPage />} />
           <Route path="/error-page" element={<ErrorPage />} />
           <Route path="/add-movie" element={<AddMoviePage />} />
+          <Route path="/movies/:movieId" element={<DetailsPage />} />
         </Routes>
       </ContainerStyled>
     </>
