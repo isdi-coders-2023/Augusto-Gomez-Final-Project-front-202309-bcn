@@ -31,16 +31,14 @@ const MovieCard = ({
 
   const getDetails = useCallback(() => {
     (async () => {
-      const selectedMovie = await loadSelectedMovie(_id!);
+      const selectedMovie = await loadSelectedMovie(_id);
 
       if (selectedMovie) {
-        dispatch(loadSelectedMovieActionCreator(selectedMovie!));
+        dispatch(loadSelectedMovieActionCreator(selectedMovie));
 
         dispatch(showBackgroundActionCreator());
         navigate(`/movies/${_id}`);
       }
-
-      return;
     })();
   }, [_id, dispatch, loadSelectedMovie, navigate]);
 
