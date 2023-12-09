@@ -1,6 +1,6 @@
 import userEvent from "@testing-library/user-event";
 import { customRenderWithBrowser } from "../../testUtils/testUtils";
-import { fireEvent, screen, waitFor } from "@testing-library/react";
+import { fireEvent, screen } from "@testing-library/react";
 import Form from "./Form";
 
 describe("Given a Form component", () => {
@@ -14,24 +14,23 @@ describe("Given a Form component", () => {
 
       await userEvent.type(nameInput, expectedInputValue);
 
-      await waitFor(() => {
-        expect(nameInput).toHaveValue(expectedInputValue);
-      });
+      expect(nameInput).toHaveValue(expectedInputValue);
     });
   });
 
   describe("When it is rendered on screen and the user selects '4.0' as a score", () => {
     test("Then it should show that number on a number by the score", async () => {
+      const expectedValue = "4.0";
+
       customRenderWithBrowser(<Form />);
 
       const scoreInput = await screen.findByRole("slider", { name: "Score" });
+
       const scoreOutput = screen.getByRole("status");
 
-      await fireEvent.change(scoreInput, { target: { value: "4.0" } });
+      await fireEvent.change(scoreInput, { target: { value: expectedValue } });
 
-      await waitFor(() => {
-        expect(scoreOutput).toHaveValue("4.0");
-      });
+      expect(scoreOutput).toHaveValue(expectedValue);
     });
   });
 
