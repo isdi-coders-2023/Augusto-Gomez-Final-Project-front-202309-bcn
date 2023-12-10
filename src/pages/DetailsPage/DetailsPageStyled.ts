@@ -7,7 +7,7 @@ const DetailsPageStyled = styled.section`
     position: relative;
     display: flex;
     flex-direction: column;
-    background-color: beige;
+    background-color: ${({ theme }) => theme.colors.light};
     align-items: center;
     border-radius: 10px;
     max-width: 280px;
@@ -16,7 +16,6 @@ const DetailsPageStyled = styled.section`
   }
 
   .movie-details-card {
-    margin-top: -140px;
     margin-top: -140px;
     display: flex;
     flex-direction: column;

@@ -1,4 +1,4 @@
-import { screen, waitFor } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import MovieCard from "./MovieCard";
 import movieMock from "../../mocks/movieMock";
 import { customRenderWithBrowser } from "../../testUtils/testUtils";
@@ -45,28 +45,8 @@ describe("Given a MovieCard component", () => {
     });
   });
 
-  describe("When it is rendered on screen and receives a movie Arrival and a click to delete it", () => {
+  describe("When it is rendered on screen and receives a movie Arrival and the user clicks the delete button of the movie Arrival", () => {
     const expectedButtonName = "Delete";
-
-    test("Then it should delete the Arrival movie", async () => {
-      const expectedMovieTitle = "Arrival";
-
-      customRenderWithBrowser(<MovieCard movie={movieMock} />);
-
-      const deleteButton = screen.getByRole("button", {
-        name: expectedButtonName,
-      });
-
-      const movieTitle = screen.getByRole("heading", {
-        name: expectedMovieTitle,
-      });
-
-      await userEvent.click(deleteButton);
-
-      waitFor(() => {
-        expect(movieTitle).not.toBeInTheDocument();
-      });
-    });
 
     test("Then it should show a feedback message with 'Success! You have deleted a movie' ", async () => {
       customRenderWithBrowser(<MovieCard movie={movieMock} />);
@@ -99,9 +79,7 @@ describe("Given a MovieCard component", () => {
 
       const toast = await screen.findByText(expectedFeedbackText);
 
-      await waitFor(() => {
-        expect(toast).toBeInTheDocument();
-      });
+      expect(toast).toBeInTheDocument();
     });
   });
 });

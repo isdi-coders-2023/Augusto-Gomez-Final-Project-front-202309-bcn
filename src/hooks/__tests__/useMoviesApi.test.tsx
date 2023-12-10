@@ -1,4 +1,4 @@
-import { renderHook, screen, waitFor } from "@testing-library/react";
+import { renderHook, screen } from "@testing-library/react";
 import useMoviesApi from "../useMoviesApi";
 import { customRender, providerWrapper } from "../../testUtils/testUtils";
 import { moviesMock } from "../../mocks/moviesMocks";
@@ -40,11 +40,9 @@ describe("Given a useMoviesApi custom hook", () => {
 
       await getMovies();
 
-      await waitFor(() => {
-        const image = screen.getByAltText("Cut cinema reel drawing");
+      const image = await screen.findByAltText("Cut cinema reel drawing");
 
-        expect(image).toBeInTheDocument();
-      });
+      expect(image).toBeInTheDocument();
     });
   });
 });

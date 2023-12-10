@@ -1,4 +1,5 @@
 import { useAppSelector } from "../../store/hooks";
+import BackgroundStyled from "./BackgroundStyled";
 
 const Background = () => {
   const { imageUrl, name } = useAppSelector(
@@ -6,7 +7,7 @@ const Background = () => {
   );
 
   return (
-    <div className="background">
+    <BackgroundStyled className="background">
       <img
         src={imageUrl}
         alt={`Background of ${name}`}
@@ -14,7 +15,8 @@ const Background = () => {
         width="320px"
         height="800px"
       />
-    </div>
+      <div className="background__gradient"></div>
+    </BackgroundStyled>
   );
 };
 
