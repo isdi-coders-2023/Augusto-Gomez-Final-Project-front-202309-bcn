@@ -4,11 +4,12 @@ import { fireEvent, screen } from "@testing-library/react";
 import Form from "./Form";
 
 describe("Given a Form component", () => {
+  const formAction = vi.fn();
   describe("When it is rendered on screen and the user inputs a 'Hello world' message in a form control for name", () => {
     test("Then it should show that text on an form control", async () => {
       const expectedInputValue = "Hello world";
 
-      customRenderWithBrowser(<Form />);
+      customRenderWithBrowser(<Form formFunction={formAction} />);
 
       const nameInput = screen.getByRole("textbox", { name: "Name" });
 
@@ -22,15 +23,13 @@ describe("Given a Form component", () => {
     test("Then it should show that number on a number by the score", async () => {
       const expectedValue = "4.0";
 
-      customRenderWithBrowser(<Form />);
+      customRenderWithBrowser(<Form formFunction={formAction} />);
 
-      const scoreInput = await screen.findByRole("slider", { name: "Score" });
-
-      const scoreOutput = screen.getByRole("status");
+      const scoreInput = await screen.findByRole("slider", { name: "Score 0" });
 
       await fireEvent.change(scoreInput, { target: { value: expectedValue } });
 
-      expect(scoreOutput).toHaveValue(expectedValue);
+      expect(scoreInput).toHaveValue(expectedValue);
     });
   });
 
@@ -38,7 +37,7 @@ describe("Given a Form component", () => {
     test("Then it should show the checkbox as checked", async () => {
       const inputName = "Seen";
 
-      customRenderWithBrowser(<Form />);
+      customRenderWithBrowser(<Form formFunction={formAction} />);
 
       const checkedInput = await screen.getByRole("checkbox", {
         name: inputName,
@@ -66,13 +65,13 @@ describe("Given a Form component", () => {
 
       const releaseDateLabel = "Release date";
 
-      customRenderWithBrowser(<Form />);
+      customRenderWithBrowser(<Form formFunction={formAction} />);
 
       const addButton = screen.getByRole("button", { name: buttonText });
 
       const releaseDateField = screen.getByLabelText(releaseDateLabel);
 
-      const scoreField = screen.getByRole("slider", { name: "Score" });
+      const scoreField = screen.getByRole("slider", { name: "Score 0" });
 
       for (const text of fieldNames) {
         await userEvent.type(
