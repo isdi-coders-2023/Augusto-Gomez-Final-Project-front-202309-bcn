@@ -1,18 +1,14 @@
 import { useEffect, useState } from "react";
 import FormStyled from "./FormStyled";
 import Button from "../Button/Button";
-import { Movie, MovieWithoutId } from "../../store/features/movies/types";
+import { MovieWithoutId } from "../../store/features/movies/types";
 
 interface FormProps {
   formFunction: (movie: MovieWithoutId) => void;
-  selectedMovie?: Movie;
 }
 
-const Form = ({
-  formFunction,
-  selectedMovie,
-}: FormProps): React.ReactElement => {
-  let emptyMovie: MovieWithoutId = {
+const Form = ({ formFunction }: FormProps): React.ReactElement => {
+  const emptyMovie: MovieWithoutId = {
     name: "",
     director: "",
     writer: "",
@@ -24,10 +20,6 @@ const Form = ({
     score: "",
     isSeen: false,
   };
-
-  if (selectedMovie) {
-    emptyMovie = selectedMovie;
-  }
 
   const [newMovie, setNewMovie] = useState<MovieWithoutId>(emptyMovie);
   const [newIsButtonDisabled, setNewIsButtonDisabled] = useState<boolean>(true);

@@ -37,7 +37,7 @@ const DetailsPage = (): React.ReactElement => {
         return;
       }
 
-      dispatch(loadSelectedMovieActionCreator(selectedMovie!));
+      dispatch(loadSelectedMovieActionCreator(selectedMovie));
       dispatch(showBackgroundActionCreator());
     })();
   }, [dispatch, loadSelectedMovie, movieId, navigate]);

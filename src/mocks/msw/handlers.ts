@@ -1,5 +1,5 @@
 import { http, HttpResponse } from "msw";
-import { moviesMock } from "../moviesMocks";
+import { moviesMock, modifiedMoviesMock } from "../moviesMocks";
 import extendedMovieMocks from "../extendedMovieMocks";
 import movieMock from "../movieMock";
 
@@ -18,5 +18,9 @@ export const handlers = [
 
   http.get(`${apiURL}/movies/${movieMock._id}`, () =>
     HttpResponse.json({ movie: movieMock }),
+  ),
+
+  http.patch(`${apiURL}/movies/${movieMock._id}`, () =>
+    HttpResponse.json({ movie: modifiedMoviesMock[0] }),
   ),
 ];
