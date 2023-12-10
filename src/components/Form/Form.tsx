@@ -25,7 +25,9 @@ const Form = ({
     isSeen: false,
   };
 
-  selectedMovie ? (emptyMovie = selectedMovie) : emptyMovie;
+  if (selectedMovie) {
+    emptyMovie = selectedMovie;
+  }
 
   const [newMovie, setNewMovie] = useState<MovieWithoutId>(emptyMovie);
   const [newIsButtonDisabled, setNewIsButtonDisabled] = useState<boolean>(true);
