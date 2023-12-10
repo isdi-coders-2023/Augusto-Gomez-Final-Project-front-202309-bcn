@@ -13,6 +13,20 @@ const DetailsPage = (): React.ReactElement => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
+  const {
+    selectedMovie: {
+      description,
+      director,
+      genre,
+      imageUrl,
+      name,
+      releaseDate,
+      score,
+      stars,
+      writer,
+    },
+  } = useAppSelector((state) => state.moviesState);
+
   useEffect(() => {
     (async () => {
       const selectedMovie = await loadSelectedMovie(movieId!);
@@ -27,20 +41,6 @@ const DetailsPage = (): React.ReactElement => {
       dispatch(showBackgroundActionCreator());
     })();
   }, [dispatch, loadSelectedMovie, movieId, navigate]);
-
-  const {
-    selectedMovie: {
-      description,
-      director,
-      genre,
-      imageUrl,
-      name,
-      releaseDate,
-      score,
-      stars,
-      writer,
-    },
-  } = useAppSelector((state) => state.moviesState);
 
   return (
     <DetailsPageStyled>
