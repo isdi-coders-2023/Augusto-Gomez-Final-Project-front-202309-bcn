@@ -75,6 +75,7 @@ const useMoviesApi = () => {
         const {
           data: { movie },
         } = await axios.post<{ movie: Movie }>("/movies/create", newMovie);
+
         dispatch(hideLoadingActionCreator());
 
         toast.success(
@@ -109,6 +110,7 @@ const useMoviesApi = () => {
         return movie;
       } catch {
         dispatch(hideLoadingActionCreator());
+
         toast.error(
           "Error! Failed to select a movie",
           setStyle("#d65745", "#F3CDC8"),
@@ -118,7 +120,42 @@ const useMoviesApi = () => {
     [dispatch],
   );
 
-  return { getMovies, deleteMovieFromApi, addMovie, loadSelectedMovie };
+  const modifyMovieFromApi = useCallback(
+    async (id: string) => {
+      try {
+        dispatch(showLoadingActionCreator());
+
+        const {
+          data: { movie },
+        } = await axios.patch<{ movie: Movie }>(`/movies/${id}`);
+
+        dispatch(hideLoadingActionCreator());
+
+        toast.success(
+          "Sucess! You have modified a movie",
+          setStyle("#55b938", "#ccEAc4"),
+        );
+
+        return movie;
+      } catch {
+        dispatch(hideLoadingActionCreator());
+
+        toast.error(
+          "Error! Failed to select a movie",
+          setStyle("#d65745", "#F3CDC8"),
+        );
+      }
+    },
+    [dispatch],
+  );
+
+  return {
+    getMovies,
+    deleteMovieFromApi,
+    addMovie,
+    loadSelectedMovie,
+    modifyMovieFromApi,
+  };
 };
 
 export default useMoviesApi;
