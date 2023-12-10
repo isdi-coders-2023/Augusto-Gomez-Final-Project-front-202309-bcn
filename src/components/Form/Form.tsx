@@ -1,24 +1,18 @@
 import { useEffect, useState } from "react";
 import FormStyled from "./FormStyled";
 import Button from "../Button/Button";
-import { MovieWithoutId } from "../../store/features/movies/types";
-import { useDispatch } from "react-redux";
-import useMoviesApi from "../../hooks/useMoviesApi";
-import { addMovieActionCreator } from "../../store/features/movies/moviesSlice";
-import { useNavigate } from "react-router-dom";
+import { Movie, MovieWithoutId } from "../../store/features/movies/types";
 
-const Form = (): React.ReactElement => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const { addMovie } = useMoviesApi();
+interface FormProps {
+  formFunction: (movie: MovieWithoutId) => void;
+  selectedMovie?: Movie;
+}
 
-  const showRangeValue = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = document.querySelector("#value")!;
-
-    value.textContent = event.target.value;
-  };
-
-  const emptyMovie: MovieWithoutId = {
+const Form = ({
+  formFunction,
+  selectedMovie,
+}: FormProps): React.ReactElement => {
+  let emptyMovie: MovieWithoutId = {
     name: "",
     director: "",
     writer: "",
@@ -30,6 +24,8 @@ const Form = (): React.ReactElement => {
     score: "",
     isSeen: false,
   };
+
+  selectedMovie ? (emptyMovie = selectedMovie) : emptyMovie;
 
   const [newMovie, setNewMovie] = useState<MovieWithoutId>(emptyMovie);
   const [newIsButtonDisabled, setNewIsButtonDisabled] = useState<boolean>(true);
@@ -52,16 +48,10 @@ const Form = (): React.ReactElement => {
     });
   };
 
-  const onFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const onFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const movie = await addMovie(newMovie);
-
-    if (movie) {
-      dispatch(addMovieActionCreator(movie));
-
-      navigate("/home");
-    }
+    formFunction(newMovie);
   };
 
   return (
@@ -79,6 +69,7 @@ const Form = (): React.ReactElement => {
           id="name"
           required
           onChange={onChangeData}
+          value={newMovie.name}
         />
       </label>
       <label htmlFor="director" className="add-movie-form__label">
@@ -90,6 +81,7 @@ const Form = (): React.ReactElement => {
           id="director"
           required
           onChange={onChangeData}
+          value={newMovie.director}
         />
       </label>
       <label htmlFor="writer" className="add-movie-form__label">
@@ -101,6 +93,7 @@ const Form = (): React.ReactElement => {
           id="writer"
           required
           onChange={onChangeData}
+          value={newMovie.writer}
         />
       </label>
       <label htmlFor="stars" className="add-movie-form__label">
@@ -112,6 +105,7 @@ const Form = (): React.ReactElement => {
           id="stars"
           required
           onChange={onChangeData}
+          value={newMovie.stars}
         />
       </label>
       <label htmlFor="releaseDate" className="add-movie-form__label">
@@ -123,6 +117,7 @@ const Form = (): React.ReactElement => {
           id="releaseDate"
           required
           onChange={onChangeData}
+          value={newMovie.releaseDate}
         />
       </label>
       <label htmlFor="genre" className="add-movie-form__label">
@@ -134,6 +129,7 @@ const Form = (): React.ReactElement => {
           id="genre"
           required
           onChange={onChangeData}
+          value={newMovie.genre}
         />
       </label>
       <label htmlFor="imageUrl" className="add-movie-form__label">
@@ -145,22 +141,23 @@ const Form = (): React.ReactElement => {
           id="imageUrl"
           required
           onChange={onChangeData}
+          value={newMovie.imageUrl}
         />
       </label>
       <div className="score">
         <label htmlFor="score" className="add-movie-form__label score__label">
           {" "}
-          Score <output id="value" className="score__value" />
+          Score {newMovie.score ? newMovie.score : "0"}
           <input
             type="range"
             className="add-movie-form__control"
             id="score"
             required
-            onChange={onChangeData}
             min={0}
             max={5}
             step={0.1}
-            onChangeCapture={showRangeValue}
+            onChange={onChangeData}
+            value={newMovie.score}
           />
         </label>
         <label htmlFor="isSeen" className="add-movie-form__label">
@@ -182,6 +179,7 @@ const Form = (): React.ReactElement => {
           id="description"
           required
           onChange={onChangeData}
+          value={newMovie.description}
         />
       </label>
       <Button
