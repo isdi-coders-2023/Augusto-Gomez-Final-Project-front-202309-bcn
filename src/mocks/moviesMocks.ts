@@ -30,3 +30,8 @@ export const moviesMock: Movie[] = [
     isSeen: false,
   },
 ];
+
+export const modifiedMoviesMock: Movie[] = [
+  { ...moviesMock[0], name: "Test" },
+  moviesMock[1],
+];

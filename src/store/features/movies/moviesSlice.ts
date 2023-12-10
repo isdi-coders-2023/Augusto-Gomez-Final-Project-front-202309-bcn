@@ -57,6 +57,7 @@ export const {
     deleteMovie: deleteMovieActionCreator,
     addMovie: addMovieActionCreator,
     loadSelectedMovie: loadSelectedMovieActionCreator,
+    modifyMovie: modifyMovieActionCreator,
   },
   reducer: moviesReducer,
 } = moviesSlice;
