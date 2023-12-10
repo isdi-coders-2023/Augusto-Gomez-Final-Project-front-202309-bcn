@@ -122,29 +122,20 @@ const useMoviesApi = () => {
 
   const modifyMovieFromApi = useCallback(
     async (id: string) => {
-      try {
-        dispatch(showLoadingActionCreator());
+      dispatch(showLoadingActionCreator());
 
-        const {
-          data: { movie },
-        } = await axios.patch<{ movie: Movie }>(`/movies/${id}`);
+      const {
+        data: { movie },
+      } = await axios.patch<{ movie: Movie }>(`/movies/${id}`);
 
-        dispatch(hideLoadingActionCreator());
+      dispatch(hideLoadingActionCreator());
 
-        toast.success(
-          "Sucess! You have modified a movie",
-          setStyle("#55b938", "#ccEAc4"),
-        );
+      toast.success(
+        "Sucess! You have modified a movie",
+        setStyle("#55b938", "#ccEAc4"),
+      );
 
-        return movie;
-      } catch {
-        dispatch(hideLoadingActionCreator());
-
-        toast.error(
-          "Error! Failed to select a movie",
-          setStyle("#d65745", "#F3CDC8"),
-        );
-      }
+      return movie;
     },
     [dispatch],
   );
