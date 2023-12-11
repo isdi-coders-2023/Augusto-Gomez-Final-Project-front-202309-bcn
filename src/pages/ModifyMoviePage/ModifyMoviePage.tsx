@@ -5,6 +5,7 @@ import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import TitleStyled from "../../styles/shared/TitleStyled";
 import useMoviesApi from "../../hooks/useMoviesApi";
 import { MovieWithoutId } from "../../store/features/movies/types";
+import ModifyMoviePageStyled from "./ModifyMoviePageStyled";
 
 const ModifyMoviePage = () => {
   const { selectedMovie } = useAppSelector((state) => state.moviesState);
@@ -23,12 +24,12 @@ const ModifyMoviePage = () => {
   };
 
   return (
-    <section className="modify-movie-page">
+    <ModifyMoviePageStyled className="modify-movie-page">
       <TitleStyled className="modify-movie-page__title">
         Modify a movie
       </TitleStyled>
       <Form formFunction={formAction} selectedMovie={selectedMovie} />
-    </section>
+    </ModifyMoviePageStyled>
   );
 };
 
