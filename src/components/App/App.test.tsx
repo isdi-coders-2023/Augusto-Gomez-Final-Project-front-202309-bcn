@@ -85,6 +85,31 @@ describe("Given an App component", () => {
       expect(movieTitle).not.toBeInTheDocument();
     });
 
+    describe("When it is rendered on screen and the user clicks the modify button of the movie Arrival", () => {
+      test("Then it should navigate to the Modify page", async () => {
+        const buttonName = "Modify";
+        const modifyPageTitle = "Modify a movie";
+
+        customRender(
+          <MemoryRouter>
+            <App />
+          </MemoryRouter>,
+        );
+
+        const modifyButton = screen.getAllByRole("button", {
+          name: buttonName,
+        });
+
+        await userEvent.click(modifyButton[0]);
+
+        const modifyMoviepageTitle = await screen.findByRole("heading", {
+          name: modifyPageTitle,
+        });
+
+        expect(modifyMoviepageTitle).toBeInTheDocument();
+      });
+    });
+
     describe("When it is rendered and you navigate to the AddPage", () => {
       test("Then it should show the AddPage with 'Add your own movie' message", async () => {
         const addMoviePageLinkText = "Add movie Add movie navigation icon";
