@@ -30,7 +30,9 @@ describe("Given a Form component", () => {
         <Form formFunction={formAction} buttonText="Add" />,
       );
 
-      const scoreInput = await screen.findByRole("slider", { name: "Score 0" });
+      const scoreInput = await screen.findByRole("slider", {
+        name: "Score 2.5",
+      });
 
       await fireEvent.change(scoreInput, { target: { value: expectedValue } });
 
@@ -64,7 +66,7 @@ describe("Given a Form component", () => {
         "Name",
         "Director",
         "Writer",
-        "Stars",
+        "Starring",
         "Genre",
         "Image Url",
         "Description",
@@ -80,7 +82,7 @@ describe("Given a Form component", () => {
 
       const releaseDateField = screen.getByLabelText(releaseDateLabel);
 
-      const scoreField = screen.getByRole("slider", { name: "Score 0" });
+      const scoreField = screen.getByRole("slider", { name: "Score 2.5" });
 
       for (const text of fieldNames) {
         await userEvent.type(

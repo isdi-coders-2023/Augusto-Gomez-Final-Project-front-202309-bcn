@@ -99,7 +99,12 @@ const DetailsPage = (): React.ReactElement => {
             </div>
           </div>
           <div className="movie-details-card__button-container">
-            <Button text="Delete" type="button" actionOnClick={deleteMovie} />
+            <Button
+              text="Delete"
+              type="button"
+              actionOnClick={deleteMovie}
+              modifier="button--delete"
+            />
             <Button
               text="Modify"
               type="button"

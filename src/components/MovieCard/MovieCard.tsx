@@ -55,12 +55,15 @@ const MovieCard = ({
         {releaseDate.slice(0, 4)}
       </span>
       <span className="movie-card__genre">{genre}</span>
-      <Button
-        text="Delete"
-        type="button"
-        actionOnClick={deleteMovie}
-        modifier="button--delete"
-      />
+      <div className="movie-card__button-container">
+        <Button
+          text="Delete"
+          type="button"
+          actionOnClick={deleteMovie}
+          modifier="button--delete"
+        />
+        <Button text="Modify" actionOnClick={modifyMovie} type="button" />
+      </div>
       <Button
         text="Details"
         type="button"
@@ -69,7 +72,6 @@ const MovieCard = ({
         }}
         modifier="button--details"
       />
-      <Button text="Modify" actionOnClick={modifyMovie} type="button" />
     </MovieCardStyled>
   );
 };
