@@ -6,11 +6,13 @@ import { Movie, MovieWithoutId } from "../../store/features/movies/types";
 interface FormProps {
   formFunction: (movie: MovieWithoutId) => void;
   selectedMovie?: Movie;
+  buttonText: string;
 }
 
 const Form = ({
   formFunction,
   selectedMovie,
+  buttonText,
 }: FormProps): React.ReactElement => {
   let emptyMovie: MovieWithoutId = {
     name: "",
@@ -185,7 +187,7 @@ const Form = ({
         />
       </label>
       <Button
-        text="Add"
+        text={buttonText}
         type="submit"
         modifier="button--form"
         isDisabled={newIsButtonDisabled}

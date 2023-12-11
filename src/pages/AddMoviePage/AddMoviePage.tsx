@@ -27,7 +27,7 @@ const AddMoviePage = (): React.ReactElement => {
       <TitleStyled className="add-movie-page__title">
         Add your own movie
       </TitleStyled>
-      <Form formFunction={formAction} />
+      <Form formFunction={formAction} buttonText="Add" />
     </AddMoviePageStyled>
   );
 };

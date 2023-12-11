@@ -28,7 +28,11 @@ const ModifyMoviePage = () => {
       <TitleStyled className="modify-movie-page__title">
         Modify a movie
       </TitleStyled>
-      <Form formFunction={formAction} selectedMovie={selectedMovie} />
+      <Form
+        formFunction={formAction}
+        selectedMovie={selectedMovie}
+        buttonText="Modify"
+      />
     </ModifyMoviePageStyled>
   );
 };
