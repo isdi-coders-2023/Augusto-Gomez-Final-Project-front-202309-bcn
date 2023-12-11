@@ -7,6 +7,7 @@ import { customRender } from "../../testUtils/testUtils";
 import userEvent from "@testing-library/user-event";
 import { server } from "../../mocks/msw/node";
 import { errorHandlers } from "../../mocks/msw/errorHandlers";
+import movieMock from "../../mocks/movieMock";
 
 describe("Given an App component", () => {
   describe("When it is rendered on screen on the HomePage", () => {
@@ -212,6 +213,35 @@ describe("Given an App component", () => {
           await screen.findByText(errorFeedbackMessage);
 
         expect(expectedErrorFeedback).toBeInTheDocument();
+      });
+    });
+
+    describe("When it is rendered on the modify movie page and the user changes the name of the movie Arrival and clicks on the button to submit", () => {
+      test("Then you should see the details from the movie Arrival on the form and navigate to the home page", async () => {
+        const nameField = "Name";
+        const buttonText = "Modify";
+        const inputName = "Arrival";
+
+        customRender(
+          <MemoryRouter initialEntries={["/modify"]}>
+            <App />
+          </MemoryRouter>,
+          movieMock,
+        );
+
+        const nameFieldInput = screen.getByRole("textbox", { name: nameField });
+
+        const modifyButton = await screen.getByRole("button", {
+          name: buttonText,
+        });
+
+        await userEvent.click(modifyButton);
+
+        const homePageTitle = await screen.findByRole("heading", {
+          name: "Our movies",
+        });
+        expect(nameFieldInput).toHaveValue(inputName);
+        expect(homePageTitle).toBeInTheDocument();
       });
     });
   });

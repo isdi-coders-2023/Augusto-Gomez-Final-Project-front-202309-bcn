@@ -28,8 +28,11 @@ const getMockStore = (initialMovieState?: Movie) => {
   return mockStore;
 };
 
-export const customRender = (children: React.ReactElement) => {
-  const mockStore = getMockStore();
+export const customRender = (
+  children: React.ReactElement,
+  initialSelectedMovieState?: Movie,
+) => {
+  const mockStore = getMockStore(initialSelectedMovieState);
 
   render(
     <ThemeProvider theme={mainTheme}>
