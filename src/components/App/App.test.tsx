@@ -301,4 +301,27 @@ describe("Given an App component", () => {
       });
     });
   });
+
+  describe("When it is rendered on the modify movie page and the user clicks the modify button and an error is thrown", () => {
+    test("Then it should show an 'Error! Failed to modify movie' message", async () => {
+      server.use(...errorHandlers);
+      const errorFeedbackMessage = "Error! Failed to modify a movie";
+
+      customRender(
+        <MemoryRouter initialEntries={["/modify"]}>
+          <App />
+        </MemoryRouter>,
+        movieMock,
+      );
+
+      const modifyButton = screen.getByRole("button", { name: "Modify" });
+
+      await userEvent.click(modifyButton);
+
+      const expectedErrorFeedback =
+        await screen.findByText(errorFeedbackMessage);
+
+      expect(expectedErrorFeedback).toBeInTheDocument();
+    });
+  });
 });
