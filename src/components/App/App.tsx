@@ -12,6 +12,7 @@ import DetailsPage from "../../pages/DetailsPage/DetailsPage";
 import Background from "../Background/Background";
 import { hideBackgroundActionCreator } from "../../store/features/UI/uiSlice";
 import { useEffect } from "react";
+import ModifyMoviePage from "../../pages/ModifyMoviePage/ModifyMoviePage";
 
 const App = (): React.ReactElement => {
   const { hasBackground, isLoading } = useAppSelector((state) => state.uiState);
@@ -38,6 +39,7 @@ const App = (): React.ReactElement => {
           <Route path="/error-page" element={<ErrorPage />} />
           <Route path="/add-movie" element={<AddMoviePage />} />
           <Route path="/:movieId" element={<DetailsPage />} />
+          <Route path="/modify" element={<ModifyMoviePage />} />
         </Routes>
       </ContainerStyled>
     </>

@@ -121,12 +121,12 @@ const useMoviesApi = () => {
   );
 
   const modifyMovieFromApi = useCallback(
-    async (id: string) => {
+    async (modifiedMovie: MovieWithoutId, id: string) => {
       dispatch(showLoadingActionCreator());
 
       const {
         data: { movie },
-      } = await axios.patch<{ movie: Movie }>(`/movies/${id}`);
+      } = await axios.patch<{ movie: Movie }>(`/movies/${id}`, modifiedMovie);
 
       dispatch(hideLoadingActionCreator());
 

@@ -88,6 +88,13 @@ const DetailsPage = (): React.ReactElement => {
           </div>
           <div className="movie-details-card__button-container">
             <Button text="Delete" type="button" />
+            <Button
+              text="Modify"
+              type="button"
+              actionOnClick={() => {
+                navigate(`/modify`);
+              }}
+            />
           </div>
         </article>
       </div>
