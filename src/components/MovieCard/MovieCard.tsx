@@ -3,7 +3,10 @@ import MovieCardStyled from "./MovieCardStyled";
 import getScoreStars from "../../utils/cardFunctions";
 import Button from "../Button/Button";
 import { useAppDispatch } from "../../store/hooks";
-import { deleteMovieActionCreator } from "../../store/features/movies/moviesSlice";
+import {
+  deleteMovieActionCreator,
+  loadSelectedMovieActionCreator,
+} from "../../store/features/movies/moviesSlice";
 import useMoviesApi from "../../hooks/useMoviesApi";
 import { useNavigate } from "react-router-dom";
 
@@ -15,13 +18,22 @@ const MovieCard = ({
   movie: { genre, name, imageUrl, releaseDate, score, _id },
 }: MovieCardProp) => {
   const dispatch = useAppDispatch();
-  const { deleteMovieFromApi } = useMoviesApi();
+  const { deleteMovieFromApi, loadSelectedMovie } = useMoviesApi();
   const navigate = useNavigate();
 
   const deleteMovie = async (): Promise<void> => {
     await deleteMovieFromApi(_id);
 
     dispatch(deleteMovieActionCreator(_id));
+  };
+
+  const modifyMovie = async (): Promise<void> => {
+    const selectedMovie = await loadSelectedMovie(_id);
+    if (selectedMovie) {
+      dispatch(loadSelectedMovieActionCreator(selectedMovie));
+    }
+
+    navigate("/modify");
   };
 
   return (
@@ -57,6 +69,7 @@ const MovieCard = ({
         }}
         modifier="button--details"
       />
+      <Button text="Modify" actionOnClick={modifyMovie} type="button" />
     </MovieCardStyled>
   );
 };

@@ -13,7 +13,7 @@ describe("Given a modifyMovieFromApi function on a useMoviesApi", () => {
         },
       } = renderHook(() => useMoviesApi(), { wrapper: providerWrapper });
 
-      const movie = await modifyMovieFromApi(movieMock._id);
+      const movie = await modifyMovieFromApi(movieMock, movieMock._id);
 
       expect(movie).toStrictEqual(modifiedMoviesMock[0]);
     });

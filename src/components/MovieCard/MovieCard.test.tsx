@@ -43,6 +43,16 @@ describe("Given a MovieCard component", () => {
 
       expect(text).toBeInTheDocument();
     });
+
+    test("Then it should show a button with a 'Modify' text", () => {
+      const buttonText = "Modify";
+
+      customRenderWithBrowser(<MovieCard movie={movieMock} />);
+
+      const expectedButton = screen.getByRole("button", { name: buttonText });
+
+      expect(expectedButton).toBeInTheDocument();
+    });
   });
 
   describe("When it is rendered on screen and receives a movie Arrival and the user clicks the delete button of the movie Arrival", () => {

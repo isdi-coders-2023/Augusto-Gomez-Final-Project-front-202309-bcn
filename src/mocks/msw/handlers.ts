@@ -20,7 +20,7 @@ export const handlers = [
     HttpResponse.json({ movie: movieMock }),
   ),
 
-  http.patch(`${apiURL}/movies/${movieMock._id}`, () =>
+  http.patch(`${apiURL}/movies/65637a12d4b93a3787b660f7`, () =>
     HttpResponse.json({ movie: modifiedMoviesMock[0] }),
   ),
 ];
