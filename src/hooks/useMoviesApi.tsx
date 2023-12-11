@@ -138,11 +138,14 @@ const useMoviesApi = () => {
 
         return movie;
       } catch {
-        toast.error("Error! Failed to modify a movie"),
-          setStyle("#d65745", "#F3CDC8");
+        toast.error(
+          "Error! Failed to modify a movie",
+          setStyle("#d65745", "#F3CDC8"),
+        ),
+          navigate("/");
       }
     },
-    [dispatch],
+    [dispatch, navigate],
   );
 
   return {
