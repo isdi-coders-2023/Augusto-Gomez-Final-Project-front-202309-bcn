@@ -9,6 +9,14 @@ import { server } from "../../mocks/msw/node";
 import { errorHandlers } from "../../mocks/msw/errorHandlers";
 import movieMock from "../../mocks/movieMock";
 
+vi.mock("react-router-dom", async () => {
+  const actual = await vi.importActual<object>("react-router-dom");
+  return {
+    ...actual,
+    useParams: vi.fn().mockReturnValue({ movieId: "65637a12d4b93a3787b660f7" }),
+  };
+});
+
 describe("Given an App component", () => {
   describe("When it is rendered on screen on the HomePage", () => {
     test("Then you should see a title 'Our movies' title on a heading", () => {
@@ -240,9 +248,80 @@ describe("Given an App component", () => {
         const homePageTitle = await screen.findByRole("heading", {
           name: "Our movies",
         });
+
         expect(nameFieldInput).toHaveValue(inputName);
         expect(homePageTitle).toBeInTheDocument();
       });
+    });
+
+    describe("When it is rendered on the detail page and the user clicks the button to delete movie", () => {
+      test("Then it should navigate to the home page", async () => {
+        const buttonText = "Delete";
+
+        customRender(
+          <MemoryRouter initialEntries={["/:movieId"]}>
+            <App />
+          </MemoryRouter>,
+          movieMock,
+        );
+
+        const deleteButton = screen.getByRole("button", { name: buttonText });
+
+        await userEvent.click(deleteButton);
+
+        const homePageTitle = await screen.findByRole("heading", {
+          name: "Our movies",
+        });
+
+        expect(homePageTitle).toBeInTheDocument();
+      });
+    });
+
+    describe("When it is rendered on the detail page and the user clicks the 'Modify' button", () => {
+      test("Then it should navigate to the modify page", async () => {
+        const buttonText = "Modify";
+        const nameField = "Name";
+
+        customRender(
+          <MemoryRouter initialEntries={["/:movieId"]}>
+            <App />
+          </MemoryRouter>,
+          movieMock,
+        );
+
+        const modifyButton = screen.getByRole("button", { name: buttonText });
+
+        await userEvent.click(modifyButton);
+
+        const nameFieldInput = await screen.findByRole("textbox", {
+          name: nameField,
+        });
+
+        expect(nameFieldInput).toBeInTheDocument();
+      });
+    });
+  });
+
+  describe("When it is rendered on the modify movie page and the user clicks the modify button and an error is thrown", () => {
+    test("Then it should show an 'Error! Failed to modify movie' message", async () => {
+      server.use(...errorHandlers);
+      const errorFeedbackMessage = "Error! Failed to modify a movie";
+
+      customRender(
+        <MemoryRouter initialEntries={["/modify"]}>
+          <App />
+        </MemoryRouter>,
+        movieMock,
+      );
+
+      const modifyButton = screen.getByRole("button", { name: "Modify" });
+
+      await userEvent.click(modifyButton);
+
+      const expectedErrorFeedback =
+        await screen.findByText(errorFeedbackMessage);
+
+      expect(expectedErrorFeedback).toBeInTheDocument();
     });
   });
 });
