@@ -5,10 +5,13 @@ import DetailsPageStyled from "./DetailsPageStyled";
 import { useEffect } from "react";
 import useMoviesApi from "../../hooks/useMoviesApi";
 import { showBackgroundActionCreator } from "../../store/features/UI/uiSlice";
-import { loadSelectedMovieActionCreator } from "../../store/features/movies/moviesSlice";
+import {
+  deleteMovieActionCreator,
+  loadSelectedMovieActionCreator,
+} from "../../store/features/movies/moviesSlice";
 
 const DetailsPage = (): React.ReactElement => {
-  const { loadSelectedMovie } = useMoviesApi();
+  const { loadSelectedMovie, deleteMovieFromApi } = useMoviesApi();
   const { movieId } = useParams();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -24,6 +27,7 @@ const DetailsPage = (): React.ReactElement => {
       score,
       stars,
       writer,
+      _id,
     },
   } = useAppSelector((state) => state.moviesState);
 
@@ -41,6 +45,14 @@ const DetailsPage = (): React.ReactElement => {
       dispatch(showBackgroundActionCreator());
     })();
   }, [dispatch, loadSelectedMovie, movieId, navigate]);
+
+  const deleteMovie = async () => {
+    await deleteMovieFromApi(_id);
+
+    dispatch(deleteMovieActionCreator(_id));
+
+    navigate("/");
+  };
 
   return (
     <DetailsPageStyled>
@@ -87,7 +99,7 @@ const DetailsPage = (): React.ReactElement => {
             </div>
           </div>
           <div className="movie-details-card__button-container">
-            <Button text="Delete" type="button" />
+            <Button text="Delete" type="button" actionOnClick={deleteMovie} />
             <Button
               text="Modify"
               type="button"
