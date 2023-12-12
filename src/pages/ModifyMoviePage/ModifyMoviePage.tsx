@@ -17,7 +17,7 @@ const ModifyMoviePage = () => {
     const movieFromForm = await modifyMovieFromApi(movie, selectedMovie._id);
 
     if (movieFromForm) {
-      dispatch(modifyMovieActionCreator(movieFromForm!));
+      dispatch(modifyMovieActionCreator(movieFromForm));
 
       navigate("/home");
     }

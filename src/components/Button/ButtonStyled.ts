@@ -29,6 +29,7 @@ const ButtonStyled = styled.button`
       letter-spacing: -0.5px;
       font-family: inherit;
       width: inherit;
+      margin: 0 11px;
     }
 
     &--form {

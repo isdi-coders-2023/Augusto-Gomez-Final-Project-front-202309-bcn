@@ -127,7 +127,7 @@ const useMoviesApi = () => {
 
         const {
           data: { movie },
-        } = await axios.patch<{ movie: Movie }>(`/movies/${id}`, modifiedMovie);
+        } = await axios.put<{ movie: Movie }>(`/movies/${id}`, modifiedMovie);
 
         dispatch(hideLoadingActionCreator());
 

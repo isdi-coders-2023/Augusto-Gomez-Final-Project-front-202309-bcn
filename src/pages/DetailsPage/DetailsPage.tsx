@@ -28,6 +28,7 @@ const DetailsPage = (): React.ReactElement => {
       stars,
       writer,
       _id,
+      isSeen,
     },
   } = useAppSelector((state) => state.moviesState);
 
@@ -97,9 +98,18 @@ const DetailsPage = (): React.ReactElement => {
                 {releaseDate}
               </span>
             </div>
+            <span className="movie-details-card__seen-status">
+              {isSeen ? " Seen ✔️" : "Not seen❌"}
+            </span>
           </div>
+
           <div className="movie-details-card__button-container">
-            <Button text="Delete" type="button" actionOnClick={deleteMovie} />
+            <Button
+              text="Delete"
+              type="button"
+              actionOnClick={deleteMovie}
+              modifier="button--delete"
+            />
             <Button
               text="Modify"
               type="button"

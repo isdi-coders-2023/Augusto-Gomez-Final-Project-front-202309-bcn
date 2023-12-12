@@ -153,7 +153,7 @@ describe("Given an App component", () => {
           "Name",
           "Director",
           "Writer",
-          "Stars",
+          "Starring",
           "Genre",
           "Image Url",
           "Description",
@@ -170,7 +170,7 @@ describe("Given an App component", () => {
 
         const releaseDateField = screen.getByLabelText(releaseDateLabel);
 
-        const scoreField = screen.getByRole("slider", { name: "Score 0" });
+        const scoreField = screen.getByRole("slider", { name: "Score 2.5" });
 
         for (const text of fieldNames) {
           await userEvent.type(

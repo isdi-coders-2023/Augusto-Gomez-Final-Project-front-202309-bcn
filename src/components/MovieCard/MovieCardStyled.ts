@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const MovieCardStyled = styled.article`
-  border: 1px solid #f2f2f2;
+  border: 1px solid ${({ theme }) => theme.colors.dark};
   margin-bottom: 20px;
   padding: 14px;
   border-radius: 16px;
@@ -30,6 +30,29 @@ const MovieCardStyled = styled.article`
       font-weight: 500;
       max-width: 124px;
     }
+
+    &__button-container {
+      display: flex;
+      justify-content: space-between;
+      margin: 0 11px;
+    }
+
+    &__control {
+      accent-color: transparent;
+    }
+
+    &__label {
+      display: flex;
+      align-items: center;
+      flex-direction: row-reverse;
+      gap: 5px;
+    }
+  }
+
+  .checkbox-container {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
   }
 `;
 

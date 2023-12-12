@@ -12,5 +12,5 @@ export const errorHandlers = [
 
   http.get(`${apiURL}/movies/${movieMock._id}`, () => HttpResponse.error()),
 
-  http.patch(`${apiURL}/movies/${movieMock._id}`, () => HttpResponse.error()),
+  http.put(`${apiURL}/movies/${movieMock._id}`, () => HttpResponse.error()),
 ];

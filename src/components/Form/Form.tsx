@@ -102,7 +102,7 @@ const Form = ({
       </label>
       <label htmlFor="stars" className="add-movie-form__label">
         {" "}
-        Stars
+        Starring
         <input
           type="text"
           className="add-movie-form__control"
@@ -151,7 +151,7 @@ const Form = ({
       <div className="score">
         <label htmlFor="score" className="add-movie-form__label score__label">
           {" "}
-          Score {newMovie.score ? newMovie.score : "0"}
+          Score {newMovie.score ? newMovie.score : "2.5"}
           <input
             type="range"
             className="add-movie-form__control"
