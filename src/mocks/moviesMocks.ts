@@ -13,7 +13,7 @@ export const moviesMock: Movie[] = [
       "A linguist is recruited to help communicate with extraterrestrial beings that have landed on Earth, leading to a global crisis.",
     imageUrl: "https://i.ibb.co/hmPbPy9/arrival.webp",
     score: "3.5",
-    isSeen: false,
+    isSeen: true,
   },
   {
     _id: "65637a12d4b93a3787b660f6",

@@ -34,7 +34,7 @@ describe("Given a DetailsPage component", () => {
     });
   });
 
-  test("Then it should button with a 'Delete' text", () => {
+  test("Then it should show a button with a 'Delete' text", () => {
     const buttonText = "Delete";
 
     customRenderWithBrowser(<DetailsPage />, movieMock);
@@ -42,5 +42,18 @@ describe("Given a DetailsPage component", () => {
     const expectedButton = screen.getByRole("button", { name: buttonText });
 
     expect(expectedButton).toBeInTheDocument();
+  });
+
+  describe("When it is rendered on screen with a movie that has been seen", () => {
+    test("Then it should show a 'Seen ✔️' text", () => {
+      movieMock.isSeen = true;
+      const expectedText = "Seen ✔️";
+
+      customRenderWithBrowser(<DetailsPage />, movieMock);
+
+      const expectedStatus = screen.getByText(expectedText);
+
+      expect(expectedStatus).toBeInTheDocument();
+    });
   });
 });
