@@ -9,7 +9,7 @@ export interface Movie {
   description: string;
   imageUrl: string;
   score: string;
-  isSeen: false;
+  isSeen: boolean;
 }
 
 export interface MovieList {

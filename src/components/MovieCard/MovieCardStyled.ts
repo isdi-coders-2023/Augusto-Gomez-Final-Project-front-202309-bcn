@@ -36,6 +36,23 @@ const MovieCardStyled = styled.article`
       justify-content: space-between;
       margin: 0 11px;
     }
+
+    &__control {
+      accent-color: transparent;
+    }
+
+    &__label {
+      display: flex;
+      align-items: center;
+      flex-direction: row-reverse;
+      gap: 5px;
+    }
+  }
+
+  .checkbox-container {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
   }
 `;
 

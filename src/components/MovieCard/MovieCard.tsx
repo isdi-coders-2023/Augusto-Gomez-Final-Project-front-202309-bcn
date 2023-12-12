@@ -6,6 +6,7 @@ import { useAppDispatch } from "../../store/hooks";
 import {
   deleteMovieActionCreator,
   loadSelectedMovieActionCreator,
+  modifyMovieActionCreator,
 } from "../../store/features/movies/moviesSlice";
 import useMoviesApi from "../../hooks/useMoviesApi";
 import { useNavigate } from "react-router-dom";
@@ -15,10 +16,12 @@ interface MovieCardProp {
 }
 
 const MovieCard = ({
-  movie: { genre, name, imageUrl, releaseDate, score, _id },
+  movie: { genre, name, imageUrl, releaseDate, score, _id, isSeen },
+  movie,
 }: MovieCardProp) => {
   const dispatch = useAppDispatch();
-  const { deleteMovieFromApi, loadSelectedMovie } = useMoviesApi();
+  const { deleteMovieFromApi, loadSelectedMovie, modifyMovieFromApi } =
+    useMoviesApi();
   const navigate = useNavigate();
 
   const deleteMovie = async (): Promise<void> => {
@@ -34,6 +37,18 @@ const MovieCard = ({
     }
 
     navigate("/modify");
+  };
+
+  const changeSeenStatus = async (): Promise<void> => {
+    const movieWithChangedSeenStatus = { ...movie, isSeen: !movie.isSeen };
+    const modifiedMovie = await modifyMovieFromApi(
+      movieWithChangedSeenStatus,
+      movie._id,
+    );
+
+    if (modifiedMovie) {
+      dispatch(modifyMovieActionCreator(modifiedMovie));
+    }
   };
 
   return (
@@ -64,14 +79,22 @@ const MovieCard = ({
         />
         <Button text="Modify" actionOnClick={modifyMovie} type="button" />
       </div>
-      <Button
-        text="Details"
-        type="button"
-        actionOnClick={() => {
-          navigate(`/${_id}`);
-        }}
-        modifier="button--details"
-      />
+      <div className="checkbox-container">
+        <Button
+          text="Details"
+          type="button"
+          actionOnClick={() => {
+            navigate(`/${_id}`);
+          }}
+          modifier="button--details"
+        />
+        <Button
+          text={isSeen ? "Seen ✔️" : "Not seen ❌"}
+          type={"button"}
+          actionOnClick={changeSeenStatus}
+          modifier="button--details"
+        />
+      </div>
     </MovieCardStyled>
   );
 };
