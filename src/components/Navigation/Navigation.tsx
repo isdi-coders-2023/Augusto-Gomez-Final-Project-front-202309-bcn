@@ -8,7 +8,7 @@ const Navigation = (): React.ReactElement => (
         <NavLink className="navigation-bar__link" to="/home">
           <span className="navigation-bar__text">Home</span>
           <img
-            src="images/homeIcon.svg"
+            src="/images/homeIcon.svg"
             alt="House navigation icon"
             width="48"
             height="48"
@@ -20,7 +20,7 @@ const Navigation = (): React.ReactElement => (
         <NavLink className="navigation-bar__link" to="/add-movie">
           <span className="navigation-bar__text">Add movie</span>
           <img
-            src="images/addIcon.svg"
+            src="/images/addIcon.svg"
             alt="Add movie navigation icon"
             width="48"
             height="48"
