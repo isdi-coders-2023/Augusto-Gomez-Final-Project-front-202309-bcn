@@ -92,4 +92,25 @@ describe("Given a MovieCard component", () => {
       expect(toast).toBeInTheDocument();
     });
   });
+
+  describe("When it is rendered on screen and receives a movie Arrival and the user clicks the seen button of the movie Arrival", () => {
+    test("Then the text of the button should change", async () => {
+      const expectedButtonName = "Seen ✔️";
+
+      movieMock.isSeen = true;
+      customRenderWithBrowser(<MovieCard movie={movieMock} />);
+
+      const seenButton = screen.getByRole("button", {
+        name: expectedButtonName,
+      });
+
+      await userEvent.click(seenButton);
+
+      const expectedFeedback = await screen.findByText(
+        "Sucess! You have modified a movie",
+      );
+
+      expect(expectedFeedback).toBeInTheDocument();
+    });
+  });
 });
