@@ -154,7 +154,7 @@ const Form = ({
           Score {newMovie.score ? newMovie.score : "2.5"}
           <input
             type="range"
-            className="add-movie-form__control"
+            className="add-movie-form__control add-movie-form__score"
             id="score"
             required
             min={0}
@@ -179,7 +179,7 @@ const Form = ({
         {" "}
         Description
         <textarea
-          className="add-movie-form__control"
+          className="add-movie-form__control add-movie-form__description"
           id="description"
           required
           onChange={onChangeData}

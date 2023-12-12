@@ -9,7 +9,7 @@ const mainTheme: DefaultTheme = {
     formBackground: "#dCe8e7",
     light: "#fff",
     dark: "#000",
-    modify: "#37b42d",
+    modify: "#00b7de",
     delete: "#ff6565",
     buttonBackground: "#f5f5f5",
   },

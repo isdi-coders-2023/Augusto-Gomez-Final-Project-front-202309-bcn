@@ -17,6 +17,11 @@ const FormStyled = styled.form`
       gap: 6px;
     }
 
+    &__description {
+      height: 240px;
+      resize: vertical;
+    }
+
     &__control {
       height: 40px;
       border-radius: 6px;
@@ -24,6 +29,10 @@ const FormStyled = styled.form`
       background-color: ${({ theme }) => theme.colors.background};
       padding: 8px;
       font-size: 16px;
+    }
+
+    &__score {
+      position: relative;
     }
   }
 
@@ -39,10 +48,6 @@ const FormStyled = styled.form`
       position: absolute;
       left: 60px;
     }
-  }
-
-  #description {
-    height: 240px;
   }
 `;
 

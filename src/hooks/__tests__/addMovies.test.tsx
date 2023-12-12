@@ -1,11 +1,12 @@
-import { screen, renderHook } from "@testing-library/react";
+import { renderHook } from "@testing-library/react";
 import useMoviesApi from "../useMoviesApi";
-import { customRender, providerWrapper } from "../../testUtils/testUtils";
+import { providerWrapper } from "../../testUtils/testUtils";
 import extendedMovieMocks from "../../mocks/extendedMovieMocks";
 import { server } from "../../mocks/msw/node";
 import { errorHandlers } from "../../mocks/msw/errorHandlers";
-import { MemoryRouter } from "react-router-dom";
-import App from "../../components/App/App";
+
+import { toast } from "react-toastify";
+import { setStyle } from "../../utils/toastifyFunctions";
 
 describe("Given a useMoviesApi custom hook", () => {
   const newMovie = extendedMovieMocks[2];
@@ -27,14 +28,9 @@ describe("Given a useMoviesApi custom hook", () => {
   describe("When it calls its addMovie method with a movie Superbad and the response fails", () => {
     test("Then it should show a 'Error! Failed to add a movie' message on a Toast", async () => {
       server.use(...errorHandlers);
+      const expectedError = "Error! Failed to add movie";
 
-      const errorMessage = "Error! Failed to add movie";
-
-      customRender(
-        <MemoryRouter initialEntries={["/add-movie"]}>
-          <App />
-        </MemoryRouter>,
-      );
+      toast.error = vi.fn().mockReturnValue(expectedError);
 
       const {
         result: {
@@ -43,9 +39,11 @@ describe("Given a useMoviesApi custom hook", () => {
       } = renderHook(() => useMoviesApi(), { wrapper: providerWrapper });
 
       await addMovie(extendedMovieMocks[2]);
-      const errorFeedback = await screen.findByText(errorMessage);
 
-      expect(errorFeedback).toBeInTheDocument();
+      expect(toast.error).toHaveBeenCalledWith(
+        expectedError,
+        setStyle("#d65745", "#F3CDC8"),
+      );
     });
   });
 });
