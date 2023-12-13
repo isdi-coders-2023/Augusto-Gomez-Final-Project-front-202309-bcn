@@ -6,7 +6,7 @@ The design process began in **Figma**, where the interface styles were meticulou
 
 Version control was managed with **GIT**, following a robust **CI/CD** workflow, including trunk-based development and leveraging husky hooks to enforce code quality standards. Tools such as **Eslint** and **Prettier** were employed to maintain code quality. Lighthouse was used for monitoring accessibility, best practices, SEO, and performance aspects.
 
-The backend code for this application can be found [here](#) (https://github.com/isdi-coders-2023/Augusto-Gomez-Final-Project-back-202309-bcn.git).
+The backend code for this application can be found here [https://github.com/isdi-coders-2023/Augusto-Gomez-Final-Project-back-202309-bcn.git](#)
 
 ## Features
 
@@ -37,6 +37,23 @@ Experience FlixPicks by visiting the [demo](https://augusto-gomez-202309-bcn-fro
 - **MSW**: A testing library enabling the interception and simulation of network requests for integration and unit testing.
 - **Styled Components**: A library allowing the writing of CSS styles in React components.
 
+## Sonarcloud Metrics
+
+<div align="center">
+
+[![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=isdi-coders-2023_Augusto-Gomez-Final-Project-front-202309-bcn)](https://sonarcloud.io/summary/overall?id=isdi-coders-2023_Augusto-Gomez-Final-Project-front-202309-bcn)
+
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=isdi-coders-2023_Augusto-Gomez-Final-Project-front-202309-bcn&metric=coverage)](https://sonarcloud.io/summary/overall?id=isdi-coders-2023_Augusto-Gomez-Final-Project-front-202309-bcn)
+
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=isdi-coders-2023_Augusto-Gomez-Final-Project-front-202309-bcn&metric=sqale_rating)](https://sonarcloud.io/summary/overall?id=isdi-coders-2023_Augusto-Gomez-Final-Project-front-202309-bcn)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=isdi-coders-2023_Augusto-Gomez-Final-Project-front-202309-bcn&metric=security_rating)](https://sonarcloud.io/summary/overall?id=isdi-coders-2023_Augusto-Gomez-Final-Project-front-202309-bcn)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=isdi-coders-2023_Augusto-Gomez-Final-Project-front-202309-bcn&metric=bugs)](https://sonarcloud.io/summary/overall?id=isdi-coders-2023_Augusto-Gomez-Final-Project-front-202309-bcn)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=isdi-coders-2023_Augusto-Gomez-Final-Project-front-202309-bcn&metric=vulnerabilities)](https://sonarcloud.io/summary/overall?id=isdi-coders-2023_Augusto-Gomez-Final-Project-front-202309-bcn)
+
+</div>
+
+<br/>
+
 ## Additional Tools
 
 - **ESLint**: A static code analysis tool to identify and report problematic patterns in JavaScript code.
@@ -64,4 +81,4 @@ Experience FlixPicks by visiting the [demo](https://augusto-gomez-202309-bcn-fro
 
 ## Authors
 
-- [@augusto-gs](https://github.com/augusto-gs) (replace with your GitHub username)
+- [@augusto-gs](https://github.com/augusto-gs)
