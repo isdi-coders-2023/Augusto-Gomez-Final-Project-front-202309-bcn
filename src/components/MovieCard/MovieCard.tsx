@@ -32,6 +32,7 @@ const MovieCard = ({
 
   const modifyMovie = async (): Promise<void> => {
     const selectedMovie = await loadSelectedMovie(_id);
+
     if (selectedMovie) {
       dispatch(loadSelectedMovieActionCreator(selectedMovie));
     }
@@ -41,6 +42,7 @@ const MovieCard = ({
 
   const changeSeenStatus = async (): Promise<void> => {
     const movieWithChangedSeenStatus = { ...movie, isSeen: !movie.isSeen };
+
     const modifiedMovie = await modifyMovieFromApi(
       movieWithChangedSeenStatus,
       movie._id,
