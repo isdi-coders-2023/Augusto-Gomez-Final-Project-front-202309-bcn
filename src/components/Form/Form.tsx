@@ -14,7 +14,7 @@ const Form = ({
   selectedMovie,
   buttonText,
 }: FormProps): React.ReactElement => {
-  let emptyMovie: MovieWithoutId = {
+  const emptyMovie: MovieWithoutId = {
     name: "",
     director: "",
     writer: "",
@@ -27,12 +27,14 @@ const Form = ({
     isSeen: false,
   };
 
-  if (selectedMovie) {
-    emptyMovie = selectedMovie;
-  }
-
   const [newMovie, setNewMovie] = useState<MovieWithoutId>(emptyMovie);
   const [newIsButtonDisabled, setNewIsButtonDisabled] = useState<boolean>(true);
+
+  useEffect(() => {
+    if (selectedMovie) {
+      setNewMovie({ ...selectedMovie });
+    }
+  }, [selectedMovie]);
 
   useEffect(() => {
     Object.values(newMovie).every((field) => field !== "")
@@ -73,7 +75,7 @@ const Form = ({
           id="name"
           required
           onChange={onChangeData}
-          value={newMovie.name}
+          defaultValue={newMovie.name}
         />
       </label>
       <label htmlFor="director" className="add-movie-form__label">
@@ -85,7 +87,7 @@ const Form = ({
           id="director"
           required
           onChange={onChangeData}
-          value={newMovie.director}
+          defaultValue={newMovie.director}
         />
       </label>
       <label htmlFor="writer" className="add-movie-form__label">
@@ -97,7 +99,7 @@ const Form = ({
           id="writer"
           required
           onChange={onChangeData}
-          value={newMovie.writer}
+          defaultValue={newMovie.writer}
         />
       </label>
       <label htmlFor="stars" className="add-movie-form__label">
@@ -109,7 +111,7 @@ const Form = ({
           id="stars"
           required
           onChange={onChangeData}
-          value={newMovie.stars}
+          defaultValue={newMovie.stars}
         />
       </label>
       <label htmlFor="releaseDate" className="add-movie-form__label">
@@ -121,7 +123,7 @@ const Form = ({
           id="releaseDate"
           required
           onChange={onChangeData}
-          value={newMovie.releaseDate}
+          defaultValue={newMovie.releaseDate}
         />
       </label>
       <label htmlFor="genre" className="add-movie-form__label">
@@ -133,7 +135,7 @@ const Form = ({
           id="genre"
           required
           onChange={onChangeData}
-          value={newMovie.genre}
+          defaultValue={newMovie.genre}
         />
       </label>
       <label htmlFor="imageUrl" className="add-movie-form__label">
@@ -145,7 +147,7 @@ const Form = ({
           id="imageUrl"
           required
           onChange={onChangeData}
-          value={newMovie.imageUrl}
+          defaultValue={newMovie.imageUrl}
         />
       </label>
       <div className="score">
@@ -154,14 +156,14 @@ const Form = ({
           Score {newMovie.score ? newMovie.score : "2.5"}
           <input
             type="range"
-            className="add-movie-form__control"
+            className="add-movie-form__control add-movie-form__score"
             id="score"
             required
             min={0}
             max={5}
             step={0.1}
             onChange={onChangeData}
-            value={newMovie.score}
+            defaultValue={newMovie.score}
           />
         </label>
         <label htmlFor="isSeen" className="add-movie-form__label">
@@ -179,11 +181,11 @@ const Form = ({
         {" "}
         Description
         <textarea
-          className="add-movie-form__control"
+          className="add-movie-form__control add-movie-form__description"
           id="description"
           required
           onChange={onChangeData}
-          value={newMovie.description}
+          defaultValue={newMovie.description}
         />
       </label>
       <Button

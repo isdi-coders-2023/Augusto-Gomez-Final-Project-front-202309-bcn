@@ -39,7 +39,7 @@ const App = (): React.ReactElement => {
           <Route path="/error-page" element={<ErrorPage />} />
           <Route path="/add-movie" element={<AddMoviePage />} />
           <Route path="/:movieId" element={<DetailsPage />} />
-          <Route path="/modify" element={<ModifyMoviePage />} />
+          <Route path="/:movieId/modify" element={<ModifyMoviePage />} />
         </Routes>
       </ContainerStyled>
     </>

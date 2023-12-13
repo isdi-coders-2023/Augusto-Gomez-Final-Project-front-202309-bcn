@@ -34,8 +34,7 @@ const DetailsPage = (): React.ReactElement => {
 
   useEffect(() => {
     (async () => {
-      const selectedMovie = await loadSelectedMovie(movieId!);
-
+      const selectedMovie = await loadSelectedMovie(movieId as string);
       if (!selectedMovie) {
         navigate("/");
 
@@ -114,7 +113,7 @@ const DetailsPage = (): React.ReactElement => {
               text="Modify"
               type="button"
               actionOnClick={() => {
-                navigate(`/modify`);
+                navigate(`/${_id}/modify`);
               }}
             />
           </div>

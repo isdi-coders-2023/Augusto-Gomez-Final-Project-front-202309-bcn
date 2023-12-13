@@ -1,20 +1,24 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Form from "../../components/Form/Form";
-import { modifyMovieActionCreator } from "../../store/features/movies/moviesSlice";
+import {
+  loadSelectedMovieActionCreator,
+  modifyMovieActionCreator,
+} from "../../store/features/movies/moviesSlice";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import TitleStyled from "../../styles/shared/TitleStyled";
 import useMoviesApi from "../../hooks/useMoviesApi";
 import { MovieWithoutId } from "../../store/features/movies/types";
 import ModifyMoviePageStyled from "./ModifyMoviePageStyled";
+import { useEffect } from "react";
 
 const ModifyMoviePage = () => {
-  const { selectedMovie } = useAppSelector((state) => state.moviesState);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const { modifyMovieFromApi } = useMoviesApi();
+  const { modifyMovieFromApi, loadSelectedMovie } = useMoviesApi();
+  const { movieId } = useParams();
 
   const formAction = async (movie: MovieWithoutId) => {
-    const movieFromForm = await modifyMovieFromApi(movie, selectedMovie._id);
+    const movieFromForm = await modifyMovieFromApi(movie, movieId as string);
 
     if (movieFromForm) {
       dispatch(modifyMovieActionCreator(movieFromForm));
@@ -22,6 +26,19 @@ const ModifyMoviePage = () => {
       navigate("/home");
     }
   };
+
+  useEffect(() => {
+    (async () => {
+      const movie = await loadSelectedMovie(movieId as string);
+      if (movie) {
+        dispatch(loadSelectedMovieActionCreator(movie));
+      }
+
+      return movie;
+    })();
+  }, [dispatch, loadSelectedMovie, movieId]);
+
+  const { selectedMovie } = useAppSelector((state) => state.moviesState);
 
   return (
     <ModifyMoviePageStyled className="modify-movie-page">

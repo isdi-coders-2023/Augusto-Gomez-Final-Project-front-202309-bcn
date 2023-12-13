@@ -144,10 +144,9 @@ const useMoviesApi = () => {
           "Error! Failed to modify a movie",
           setStyle("#d65745", "#F3CDC8"),
         );
-        navigate("/");
       }
     },
-    [dispatch, navigate],
+    [dispatch],
   );
 
   return {

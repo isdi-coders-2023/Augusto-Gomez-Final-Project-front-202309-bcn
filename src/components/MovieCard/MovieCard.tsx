@@ -36,7 +36,7 @@ const MovieCard = ({
       dispatch(loadSelectedMovieActionCreator(selectedMovie));
     }
 
-    navigate("/modify");
+    navigate(`/${_id}/modify`);
   };
 
   const changeSeenStatus = async (): Promise<void> => {
