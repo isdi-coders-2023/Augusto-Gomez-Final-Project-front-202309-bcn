@@ -34,7 +34,6 @@ const MovieCardStyled = styled.article`
     &__button-container {
       display: flex;
       justify-content: space-between;
-      margin: 0 11px;
     }
 
     &__control {

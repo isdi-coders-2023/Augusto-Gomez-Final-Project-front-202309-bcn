@@ -63,6 +63,10 @@ const DetailsPageStyled = styled.section`
       display: flex;
       gap: 62px;
     }
+
+    &__seen-status {
+      align-self: center;
+    }
   }
 
   .title-container {
