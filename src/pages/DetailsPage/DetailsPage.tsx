@@ -35,6 +35,7 @@ const DetailsPage = (): React.ReactElement => {
   useEffect(() => {
     (async () => {
       const selectedMovie = await loadSelectedMovie(movieId as string);
+
       if (!selectedMovie) {
         navigate("/");
 

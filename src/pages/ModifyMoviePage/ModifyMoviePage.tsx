@@ -30,6 +30,7 @@ const ModifyMoviePage = () => {
   useEffect(() => {
     (async () => {
       const movie = await loadSelectedMovie(movieId as string);
+
       if (movie) {
         dispatch(loadSelectedMovieActionCreator(movie));
       }
